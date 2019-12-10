@@ -1,9 +1,13 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 
-**/dist/
-**/node/
-**/node_modules/
+shop-app-web-admin-web/src/main/web/dist/
+shop-app-web-admin/src/main/web/node/
+shop-app-web-admin/src/main/web/node_modules/
+
+shop-app-web-user/src/main/web/dist/
+shop-app-web-user/src/main/web/node/
+shop-app-web-user/src/main/web/node_modules/
 
 ### STS ###
 .apt_generated
