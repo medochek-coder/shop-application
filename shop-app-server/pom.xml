@@ -80,22 +80,22 @@
             <artifactId>disk-restapi-sdk</artifactId>
             <version>1.03</version>
         </dependency>
-        <dependency>
-            <groupId>com.medochek.shopapp</groupId>
-            <artifactId>shop-app-web-user</artifactId>
-            <version>${project.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <!--Dependency for admin app-->
         <!--<dependency>
             <groupId>com.medochek.shopapp</groupId>
             <artifactId>shop-app-web-user</artifactId>
             <version>${project.version}</version>
             <scope>runtime</scope>
         </dependency>-->
+        <!--Dependency for admin app-->
+        <dependency>
+            <groupId>com.medochek.shopapp</groupId>
+            <artifactId>shop-app-web-admin</artifactId>
+            <version>${project.version}</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
-    <build>
+    <!--<build>
         <plugins>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -138,9 +138,9 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
     <!--Server config for admin app-->
-    <!--<build>
+    <build>
         <plugins>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -183,5 +183,5 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>-->
+    </build>
 </project>
