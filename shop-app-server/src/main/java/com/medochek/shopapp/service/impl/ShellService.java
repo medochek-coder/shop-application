@@ -1,7 +1,7 @@
 package com.medochek.shopapp.service.impl;
 
 import com.medochek.shopapp.domain.Basket;
-import com.medochek.shopapp.domain.Order;
+import com.medochek.shopapp.domain.CustomerOrder;
 import com.medochek.shopapp.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
@@ -21,7 +21,7 @@ public class ShellService {
     private BasketServiceImpl basketService;
 
     @Autowired
-    private OrderServiceImpl orderService;
+    private CustomerOrderServiceImpl orderService;
 
     @ShellMethod(value = "Create product command", key = {"cp", "createp"})
     public String create(@ShellOption String name, @ShellOption Double price, @ShellOption(defaultValue = "") String description,
@@ -138,25 +138,25 @@ public class ShellService {
     public String createOrder(@ShellOption Long basketId, @ShellOption String ownerFirstName,
                               @ShellOption String ownerLastName, @ShellOption String ownerPhone,
                               @ShellOption String ownerEmail) {
-        Order order = orderService.create(basketId, ownerFirstName, ownerLastName, ownerPhone, ownerEmail);
-        return "Created order: " + order;
+        CustomerOrder customerOrder = orderService.create(basketId, ownerFirstName, ownerLastName, ownerPhone, ownerEmail);
+        return "Created order: " + customerOrder;
 
     }
 
     @ShellMethod(value = "Get order by id command", key = {"geto", "getOrder"})
     public String getOrderById(@ShellOption Long idOrder) {
-        Order order = orderService.getById(idOrder);
-        if (order != null) {
-            return "Found order: " + order;
+        CustomerOrder customerOrder = orderService.getById(idOrder);
+        if (customerOrder != null) {
+            return "Found order: " + customerOrder;
         }
         return "Not found";
     }
 
     @ShellMethod(value = "Get all orders command", key = {"gao", "getAllOrders"})
     public String getAllOrders() {
-        List<Order> orders = orderService.getAll();
-        if (orders != null) {
-            return "Found orders: " + orders;
+        List<CustomerOrder> customerOrders = orderService.getAll();
+        if (customerOrders != null) {
+            return "Found orders: " + customerOrders;
         }
         return "Not found";
     }

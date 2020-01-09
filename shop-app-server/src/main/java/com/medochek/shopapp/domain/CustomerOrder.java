@@ -13,17 +13,20 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class CustomerOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String ownerFirstName;
+
     private String ownerLastName;
+
     private String ownerPhone;
+
     private String ownerEmail;
 
-    @OneToOne(targetEntity = Basket.class, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, targetEntity=Basket.class)
     @JoinColumn(name = "basket_id")
     private Basket basket;
 

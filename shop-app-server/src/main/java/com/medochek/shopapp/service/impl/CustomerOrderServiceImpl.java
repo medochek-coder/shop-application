@@ -1,36 +1,38 @@
 package com.medochek.shopapp.service.impl;
 
 import com.medochek.shopapp.domain.Basket;
-import com.medochek.shopapp.domain.Order;
-import com.medochek.shopapp.repository.OrderRepository;
-import com.medochek.shopapp.service.OrderService;
+import com.medochek.shopapp.domain.CustomerOrder;
+import com.medochek.shopapp.repository.CustomerOrderRepository;
+import com.medochek.shopapp.service.CustomerOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class OrderServiceImpl implements OrderService {
+@Transactional
+public class CustomerOrderServiceImpl implements CustomerOrderService {
 
     @Autowired
     private BasketServiceImpl basketService;
 
     @Autowired
-    private OrderRepository repository;
+    private CustomerOrderRepository repository;
 
     @Override
-    public Order create(Long basketId, String ownerFirstName, String ownerLastName, String ownerPhone, String ownerEmail) {
+    public CustomerOrder create(Long basketId, String ownerFirstName, String ownerLastName, String ownerPhone, String ownerEmail) {
 
         Basket basket = basketService.getById(basketId);
         if(basket != null) {
-            Order order = Order.builder()
+            CustomerOrder customerOrder = CustomerOrder.builder()
                     .basket(basket)
                     .ownerFirstName(ownerFirstName)
                     .ownerLastName(ownerLastName)
                     .ownerPhone(ownerPhone)
                     .ownerEmail(ownerEmail)
                     .build();
-            return repository.save(order);
+            return repository.save(customerOrder);
         }
         else {
             return null;
@@ -39,12 +41,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getById(Long id) {
+    public CustomerOrder getById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public List<Order> getAll() {
+    public List<CustomerOrder> getAll() {
         return repository.findAll();
     }
 

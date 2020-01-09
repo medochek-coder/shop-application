@@ -20,11 +20,20 @@ public class BasketRow {
 
     private Integer count;
 
-    @OneToOne(targetEntity = Product.class, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne(targetEntity = Basket.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "basket_id")
     private Basket basket;
+
+    @Override
+    public String toString() {
+        return "BasketRow{" +
+                "id=" + id +
+                ", count=" + count +
+                ", product=" + product +
+                '}';
+    }
 }
