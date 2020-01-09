@@ -1,7 +1,7 @@
 package com.medochek.shopapp.service.impl;
 
 import com.medochek.shopapp.domain.Basket;
-import com.medochek.shopapp.domain.Order;
+import com.medochek.shopapp.domain.ProductOrder;
 import com.medochek.shopapp.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
@@ -138,25 +138,25 @@ public class ShellService {
     public String createOrder(@ShellOption Long basketId, @ShellOption String ownerFirstName,
                               @ShellOption String ownerLastName, @ShellOption String ownerPhone,
                               @ShellOption String ownerEmail) {
-        Order order = orderService.create(basketId, ownerFirstName, ownerLastName, ownerPhone, ownerEmail);
-        return "Created order: " + order;
+        ProductOrder productOrder = orderService.create(basketId, ownerFirstName, ownerLastName, ownerPhone, ownerEmail);
+        return "Created order: " + productOrder;
 
     }
 
     @ShellMethod(value = "Get order by id command", key = {"geto", "getOrder"})
     public String getOrderById(@ShellOption Long idOrder) {
-        Order order = orderService.getById(idOrder);
-        if (order != null) {
-            return "Found order: " + order;
+        ProductOrder productOrder = orderService.getById(idOrder);
+        if (productOrder != null) {
+            return "Found order: " + productOrder;
         }
         return "Not found";
     }
 
     @ShellMethod(value = "Get all orders command", key = {"gao", "getAllOrders"})
     public String getAllOrders() {
-        List<Order> orders = orderService.getAll();
-        if (orders != null) {
-            return "Found orders: " + orders;
+        List<ProductOrder> productOrders = orderService.getAll();
+        if (productOrders != null) {
+            return "Found orders: " + productOrders;
         }
         return "Not found";
     }

@@ -24,7 +24,7 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public Basket createEmpty() {
-        return new Basket();
+        return repository.save(new Basket());
     }
 
     @Override
@@ -40,9 +40,9 @@ public class BasketServiceImpl implements BasketService {
         Basket basket = getById(idBasket);
         Product product = productService.getById(idProduct);
         if(basket != null && product != null) {
-            List<BasketRow> basketRows = basketRowRepository.findByBasketAndAndProduct(idBasket, idProduct);
-            if(basketRows.isEmpty()) {
-                BasketRow basketRow = new BasketRow().builder()
+            BasketRow basketRows = basketRowRepository.findByBasketAndProduct(basket, product);
+            if(basketRows == null) {
+                BasketRow basketRow = BasketRow.builder()
                         .basket(basket)
                         .product(product)
                         .count(1)
@@ -62,9 +62,9 @@ public class BasketServiceImpl implements BasketService {
         Basket basket = getById(idBasket);
         Product product = productService.getById(idProduct);
         if(basket != null && product != null) {
-            List<BasketRow> basketRows = basketRowRepository.findByBasketAndAndProduct(idBasket, idProduct);
-            if(basketRows.isEmpty()) {
-                BasketRow basketRow = new BasketRow().builder()
+            BasketRow basketRows = basketRowRepository.findByBasketAndProduct(basket, product);
+            if(basketRows == null) {
+                BasketRow basketRow = BasketRow.builder()
                         .basket(basket)
                         .product(product)
                         .count(count)
@@ -79,20 +79,20 @@ public class BasketServiceImpl implements BasketService {
 
     }
 
-    @Override
+    /*@Override
     public Integer changeCountProductById(Long idBasket, Long idProduct,  Integer countProduct) {
         Basket basket = getById(idBasket);
         Product product = productService.getById(idProduct);
         if(basket != null && product != null) {
-            List<BasketRow> basketRows = basketRowRepository.findByBasketAndAndProduct(idBasket, idProduct);
-            if (basketRows.isEmpty() && countProduct > 0) {
+            BasketRow basketRow = basketRowRepository.findByBasketAndProduct(basket, product);
+            if (basketRow == null && countProduct > 0) {
                 addProductById(idBasket, idProduct, countProduct);
                 return countProduct;
             }
             else {
-                Integer count = basketRows.get(0).getCount() + countProduct;
+                Integer count = basketRow.getCount() + countProduct;
                 if (count > 0) {
-                    basketRows.get(0).setCount(count);
+                    basketRow.setCount(count);
                     return count;
                 }
                 else {
@@ -103,19 +103,44 @@ public class BasketServiceImpl implements BasketService {
             }
         }
         return -1;
+    }*/
+
+    @Override
+    public Integer changeCountProductById(Long idBasket, Long idProduct,  Integer countProduct) {
+        Basket basket = getById(idBasket);
+        Product product = productService.getById(idProduct);
+        if(basket != null && product != null) {
+            BasketRow basketRow = basketRowRepository.findByBasketAndProduct(basket, product);
+            if (basketRow == null && countProduct > 0) {
+                addProductById(idBasket, idProduct, countProduct);
+                return countProduct;
+            } else {
+                if (countProduct > 0) {
+                    basketRow.setCount(countProduct);
+                    basketRowRepository.save(basketRow);
+                    return countProduct;
+                }
+            }
+        }
+        return -1;
     }
 
     @Override
     public void deleteProductById(Long idBasket, Long idProduct) {
-        List<BasketRow> basketRows = basketRowRepository.findByBasketAndAndProduct(idBasket, idProduct);
-        for (BasketRow row : basketRows) {
-            basketRowRepository.deleteById(row.getId());
+        Basket basket = getById(idBasket);
+        Product product = productService.getById(idProduct);
+        if(basket == null || product == null) return;
+        BasketRow basketRow = basketRowRepository.findByBasketAndProduct(getById(idBasket), productService.getById(idProduct));
+        if (basketRow != null) {
+            basketRowRepository.deleteById(basketRow.getId());
         }
     }
 
     @Override
     public void clearById(Long id) {
-        List<BasketRow> basketRows = basketRowRepository.findByBasket(id);
+        Basket basket = getById(id);
+        if (basket == null) return;
+        List<BasketRow> basketRows = basketRowRepository.findByBasket(basket);
         for (BasketRow row : basketRows) {
             basketRowRepository.deleteById(row.getId());
         }

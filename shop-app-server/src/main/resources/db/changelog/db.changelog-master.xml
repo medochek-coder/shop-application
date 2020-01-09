@@ -96,4 +96,9 @@
                                  referencedColumnNames="id"
                                  referencedTableName="basket"/>
     </changeSet>
+
+    <changeSet author="irina.kulygina" id="5">
+        <renameTable newTableName="product_order"
+                     oldTableName="order"/>
+    </changeSet>
 </databaseChangeLog>

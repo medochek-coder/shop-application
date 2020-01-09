@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class ProductOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,7 +23,7 @@ public class Order {
     private String ownerPhone;
     private String ownerEmail;
 
-    @OneToOne(targetEntity = Basket.class, cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "basket_id")
     private Basket basket;
 

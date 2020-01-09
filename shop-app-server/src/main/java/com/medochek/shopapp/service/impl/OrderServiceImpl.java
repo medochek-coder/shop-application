@@ -1,7 +1,7 @@
 package com.medochek.shopapp.service.impl;
 
 import com.medochek.shopapp.domain.Basket;
-import com.medochek.shopapp.domain.Order;
+import com.medochek.shopapp.domain.ProductOrder;
 import com.medochek.shopapp.repository.OrderRepository;
 import com.medochek.shopapp.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +19,18 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository repository;
 
     @Override
-    public Order create(Long basketId, String ownerFirstName, String ownerLastName, String ownerPhone, String ownerEmail) {
+    public ProductOrder create(Long basketId, String ownerFirstName, String ownerLastName, String ownerPhone, String ownerEmail) {
 
         Basket basket = basketService.getById(basketId);
         if(basket != null) {
-            Order order = Order.builder()
+            ProductOrder productOrder = ProductOrder.builder()
                     .basket(basket)
                     .ownerFirstName(ownerFirstName)
                     .ownerLastName(ownerLastName)
                     .ownerPhone(ownerPhone)
                     .ownerEmail(ownerEmail)
                     .build();
-            return repository.save(order);
+            return repository.save(productOrder);
         }
         else {
             return null;
@@ -39,12 +39,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getById(Long id) {
+    public ProductOrder getById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public List<Order> getAll() {
+    public List<ProductOrder> getAll() {
         return repository.findAll();
     }
 
