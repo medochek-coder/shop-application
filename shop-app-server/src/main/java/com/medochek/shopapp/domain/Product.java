@@ -31,6 +31,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
                 ", price=" + price +
-                '}';
+                '}' +
+                "\n";
     }
 }

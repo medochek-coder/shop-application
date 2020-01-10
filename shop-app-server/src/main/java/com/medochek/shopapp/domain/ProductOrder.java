@@ -34,13 +34,14 @@ public class ProductOrder {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                "date=" + date +
-                "status=" + status +
+                "date=" + date + '\'' +
+                "status=" + status + '\''  +
                 ", ownerFirstName='" + ownerFirstName + '\'' +
                 ", ownerLastName='" + ownerLastName + '\'' +
                 ", ownerPhone='" + ownerPhone + '\'' +
                 ", ownerEmail='" + ownerEmail + '\'' +
                 ", basket=" + basket +
-                '}';
+                '}' +
+                "\n";
     }
 }

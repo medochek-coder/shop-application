@@ -27,6 +27,7 @@ public class Basket {
         return "Basket{" +
                 "id=" + id +
                 ", basketRowList=" + basketRowList +
-                '}';
+                '}' +
+                "\n";
     }
 }

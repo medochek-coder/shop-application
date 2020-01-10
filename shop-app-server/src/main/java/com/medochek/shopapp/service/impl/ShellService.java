@@ -24,7 +24,8 @@ public class ShellService {
     @Autowired
     private OrderServiceImpl orderService;
 
-    @ShellMethod(value = "Create product command", key = {"cp", "createp"})
+    @ShellMethod(value = "Create product command, parameters: productName(string), price(double), " +
+            "description(string, defaultValue = ''), imageLink(string, defaultValue = '')", key = {"p_cr"})
     public String create(@ShellOption String name, @ShellOption Double price, @ShellOption(defaultValue = "") String description,
                          @ShellOption(defaultValue = "") String image) {
         Product product = Product.builder()
@@ -37,7 +38,8 @@ public class ShellService {
         return "Created product: " + product;
     }
 
-    @ShellMethod(value = "Update product command", key = {"up", "udatep"})
+    @ShellMethod(value = "Update product command, parameters: productId(long), productName(string), price(double), " +
+            "description(string, defaultValue = ''), imageLink(string, defaultValue = '')", key = {"p_upd",})
     public String update(@ShellOption Long id, @ShellOption String name, @ShellOption Double price, @ShellOption(defaultValue = "") String description,
                          @ShellOption(defaultValue = "") String image) {
         Product product = Product.builder()
@@ -51,7 +53,7 @@ public class ShellService {
         return "Updated product: " + product;
     }
 
-    @ShellMethod(value = "Get product by id command", key = {"gp", "getp"})
+    @ShellMethod(value = "Get product by id command, parameters: productId(long)", key = {"p_g"})
     public String getById(@ShellOption Long id) {
         Product product = productService.getById(id);
         if (product != null) {
@@ -60,7 +62,7 @@ public class ShellService {
         return "Not found";
     }
 
-    @ShellMethod(value = "Get all product command", key = {"gap", "getAllProduct"})
+    @ShellMethod(value = "Get all product command", key = {"p_g_all"})
     public String getAll() {
         List<Product> products = productService.getAll();
         if (products != null) {
@@ -69,31 +71,34 @@ public class ShellService {
         return "Not found";
     }
 
-    @ShellMethod(value = "Delete product by id command", key = {"dp", "deletep"})
+    @ShellMethod(value = "Delete product by id command, parameters: productId(long)", key = {"p_del"})
     public String deleteById(@ShellOption Long id) {
         productService.deleteById(id);
         return "Product deleted";
     }
 
-    @ShellMethod(value = "Create empty basket command", key = {"cb", "createb"})
+    @ShellMethod(value = "Create empty basket command", key = {"b_cr"})
     public String createBasket() {
         Basket basket = basketService.createEmpty();
         return "Created basket: " + basket;
     }
 
-    @ShellMethod(value = "Delete basket by id command", key = {"db", "deleteb"})
+    @ShellMethod(value = "Delete basket by id command, parameters: basketId(long)", key = {"b_del"})
     public String deleteBasket(@ShellOption Long id) {
         basketService.deleteById(id);
         return "Basket deleted";
     }
 
-    @ShellMethod(value = "Add product to basket command", key = {"addp", "addProductToBasket"})
-    public String addProductInBasketById(@ShellOption Long idBasket, @ShellOption Long idProduct, @ShellOption(defaultValue = "1") Integer count) {
+    @ShellMethod(value = "Add product to basket command, parameters: basketId(long), productId(long), " +
+            "count(integer, defaultValue = 1)", key = {"b_add_p"})
+    public String addProductInBasketById(@ShellOption Long idBasket, @ShellOption Long idProduct,
+                                         @ShellOption(defaultValue = "1") Integer count) {
         basketService.addProductById(idBasket, idProduct, count);
         return "Product added to basket";
     }
 
-    @ShellMethod(value = "Change count product in basket command", key = {"ccp", "changeCountProductInBasket"})
+    @ShellMethod(value = "Change count product in basket command, parameters: basketId(long), productId(long), " +
+            "count(integer, defaultValue = 1)", key = {"b_ch_c_p", "changeCountProductInBasket"})
     public String changeCountProductInBasket(@ShellOption Long idBasket, @ShellOption Long idProduct, @ShellOption(defaultValue = "1") Integer count) {
         Integer result = basketService.changeCountProductById(idBasket, idProduct, count);
         if (result == 0) {
@@ -105,7 +110,8 @@ public class ShellService {
         return "Product or basket does not exist";
     }
 
-    @ShellMethod(value = "Increase or decrease count product in basket command", key = {"incOrDecProdInBas"})
+    @ShellMethod(value = "Increase or decrease count product in basket command, parameters: basketId(long), productId(long)," +
+            "increase(boolean, defaultValue = false)", key = {"b_inc_p"})
     public String incOrDecCountProductById(@ShellOption Long idBasket, @ShellOption Long idProduct, @ShellOption boolean inc) {
         Integer result = basketService.incOrDecCountProductById(idBasket, idProduct, inc);
         if (result == 0) {
@@ -118,19 +124,19 @@ public class ShellService {
     }
 
 
-    @ShellMethod(value = "Delete product by id in basket command", key = {"dpib", "deleteProductInBasket"})
+    @ShellMethod(value = "Delete product by id in basket command, parameters: basketId(long), productId(long)", key = {"b_del_p"})
     public String deleteProductByIdInBasket(@ShellOption Long idBasket, @ShellOption Long idProduct) {
         basketService.deleteProductById(idBasket, idProduct);
         return "Product removed from basket";
     }
 
-    @ShellMethod(value = "Clear basket by id command", key = {"clb", "clearBasket"})
+    @ShellMethod(value = "Clear basket by id command", key = {"b_cl"})
     public String clearBasketById(@ShellOption Long idBasket) {
         basketService.clearById(idBasket);
         return "Basket cleared";
     }
 
-    @ShellMethod(value = "Get basket by id command", key = {"getb", "getBasket"})
+    @ShellMethod(value = "Get basket by id command, parameters: basketId(long)", key = {"b_g"})
     public String getBasketById(@ShellOption Long idBasket) {
         Basket basket = basketService.getById(idBasket);
         if (basket != null) {
@@ -139,7 +145,7 @@ public class ShellService {
         return "Not found";
     }
 
-    @ShellMethod(value = "Get all baskets command", key = {"gab", "getAllBaskets"})
+    @ShellMethod(value = "Get all baskets command", key = {"b_g_all"})
     public String getAllBasket() {
         List<Basket> baskets = basketService.getAll();
         if (baskets != null) {
@@ -148,7 +154,8 @@ public class ShellService {
         return "Not found";
     }
 
-    @ShellMethod(value = "Create order command", key = {"co", "createOrder"})
+    @ShellMethod(value = "Create order command, parameters: basketId(long), ownerFirstName(string), " +
+            "ownerLastName(string), ownerPhone(string), ownerEmail(string)", key = {"o_cr"})
     public String createOrder(@ShellOption Long basketId, @ShellOption String ownerFirstName,
                               @ShellOption String ownerLastName, @ShellOption String ownerPhone,
                               @ShellOption String ownerEmail) {
@@ -169,7 +176,7 @@ public class ShellService {
 
     }
 
-    @ShellMethod(value = "Get order by id command", key = {"geto", "getOrder"})
+    @ShellMethod(value = "Get order by id command, parameters: orderId(long)", key = {"o_g"})
     public String getOrderById(@ShellOption Long idOrder) {
         ProductOrder productOrder = orderService.getById(idOrder);
         if (productOrder != null) {
@@ -178,7 +185,7 @@ public class ShellService {
         return "Not found";
     }
 
-    @ShellMethod(value = "Get all orders in progress command", key = {"gao", "getAllOrders"})
+    @ShellMethod(value = "Get all orders in progress command", key = {"o_g_all"})
     public String getAllOrders() {
         List<ProductOrder> productOrders = orderService.getAll();
         if (productOrders != null) {
@@ -187,13 +194,13 @@ public class ShellService {
         return "Not found";
     }
 
-    @ShellMethod(value = "Delete order by id command", key = {"do", "deleteOrder"})
+    @ShellMethod(value = "Delete order by id command, parameters: orderId(long)", key = {"o_del"})
     public String deleteOrder(@ShellOption Long id) {
         orderService.delete(id);
         return "Order deleted";
     }
 
-    @ShellMethod(value = "Get all completed orders command", key = {"gaco"})
+    @ShellMethod(value = "Get all completed orders command", key = {"o_g_all_compl"})
     public String getAllCompletedOrders() {
         List<ProductOrder> productOrders = orderService.getCompletedOrders();
         if (productOrders != null) {
@@ -202,7 +209,7 @@ public class ShellService {
         return "Not found";
     }
 
-    @ShellMethod(value = "Complete order by id command", key = {"compO"})
+    @ShellMethod(value = "Complete order by id command, parameters: orderId(long)", key = {"o_compl"})
     public String completeOrder(@ShellOption Long id) {
         ProductOrder productOrder = orderService.getById(id);
         if (productOrder != null) {

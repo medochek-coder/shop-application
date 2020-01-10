@@ -34,6 +34,7 @@ public class BasketRow {
                 "id=" + id +
                 ", count=" + count +
                 ", product=" + product +
-                '}';
+                '}' +
+                "\n";
     }
 }
