@@ -115,16 +115,15 @@ public class BasketServiceImpl implements BasketService {
             BasketRow basketRow = basketRowRepository.findByBasketAndProduct(basket, product);
             if (basketRow == null) {
                 if (increase) {
-                    changeCountProductById(idBasket, idProduct, 1);
+                    return changeCountProductById(idBasket, idProduct, 1);
                 } else {
                     return  -1;
                 }
             } else {
                 if (increase) {
-                    basketRow.setCount(basketRow.getCount() + 1);
-                    changeCountProductById(idBasket, idProduct, basketRow.getCount() + 1);
+                    return changeCountProductById(idBasket, idProduct, basketRow.getCount() + 1);
                 } else {
-                    changeCountProductById(idBasket, idProduct, basketRow.getCount() + 1);
+                    return changeCountProductById(idBasket, idProduct, basketRow.getCount() - 1);
                 }
 
             }
