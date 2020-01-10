@@ -41,7 +41,6 @@ public class ProductOrder {
                 ", ownerPhone='" + ownerPhone + '\'' +
                 ", ownerEmail='" + ownerEmail + '\'' +
                 ", basket=" + basket +
-                '}' +
-                "\n";
+                '}';
     }
 }

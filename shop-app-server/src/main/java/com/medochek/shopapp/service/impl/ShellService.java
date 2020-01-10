@@ -3,6 +3,8 @@ package com.medochek.shopapp.service.impl;
 import com.medochek.shopapp.domain.Basket;
 import com.medochek.shopapp.domain.ProductOrder;
 import com.medochek.shopapp.domain.Product;
+import com.medochek.shopapp.service.PrintService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -23,6 +25,9 @@ public class ShellService {
 
     @Autowired
     private OrderServiceImpl orderService;
+
+    @Autowired
+    private PrintService printService;
 
     @ShellMethod(value = "Create product command, parameters: productName(string), price(double), " +
             "description(string, defaultValue = ''), imageLink(string, defaultValue = '')", key = {"p_cr"})
@@ -66,7 +71,7 @@ public class ShellService {
     public String getAll() {
         List<Product> products = productService.getAll();
         if (products != null) {
-            return "Found product: " + products;
+            return "Found products: " + printService.printProductList(products);
         }
         return "Not found";
     }
@@ -80,7 +85,7 @@ public class ShellService {
     @ShellMethod(value = "Create empty basket command", key = {"b_cr"})
     public String createBasket() {
         Basket basket = basketService.createEmpty();
-        return "Created basket: " + basket;
+        return "Created basket: " + printService.printBasket(basket);
     }
 
     @ShellMethod(value = "Delete basket by id command, parameters: basketId(long)", key = {"b_del"})
@@ -140,7 +145,7 @@ public class ShellService {
     public String getBasketById(@ShellOption Long idBasket) {
         Basket basket = basketService.getById(idBasket);
         if (basket != null) {
-            return "Found basket: " + basket;
+            return "Found basket: " + printService.printBasket(basket);
         }
         return "Not found";
     }
@@ -149,7 +154,7 @@ public class ShellService {
     public String getAllBasket() {
         List<Basket> baskets = basketService.getAll();
         if (baskets != null) {
-            return "Found baskets: " + baskets;
+            return "Found baskets: " + printService.printBasketList(baskets);
         }
         return "Not found";
     }
@@ -172,7 +177,7 @@ public class ShellService {
                                     .date(LocalDateTime.now())
                                     .status("IN_PROGRESS")
                                     .build();
-        return "Created order: " + orderService.create(productOrder);
+        return "Created order: " + printService.printOrder(orderService.create(productOrder));
 
     }
 
@@ -180,7 +185,7 @@ public class ShellService {
     public String getOrderById(@ShellOption Long idOrder) {
         ProductOrder productOrder = orderService.getById(idOrder);
         if (productOrder != null) {
-            return "Found order: " + productOrder;
+            return "Found order: " + printService.printOrder(productOrder);
         }
         return "Not found";
     }
@@ -189,7 +194,7 @@ public class ShellService {
     public String getAllOrders() {
         List<ProductOrder> productOrders = orderService.getAll();
         if (productOrders != null) {
-            return "Found orders: " + productOrders;
+            return "Found orders: " + printService.printOrderList(productOrders);
         }
         return "Not found";
     }
@@ -204,7 +209,7 @@ public class ShellService {
     public String getAllCompletedOrders() {
         List<ProductOrder> productOrders = orderService.getCompletedOrders();
         if (productOrders != null) {
-            return "Found orders: " + productOrders;
+            return "Found orders: " + printService.printOrderList(productOrders);
         }
         return "Not found";
     }
@@ -213,7 +218,7 @@ public class ShellService {
     public String completeOrder(@ShellOption Long id) {
         ProductOrder productOrder = orderService.getById(id);
         if (productOrder != null) {
-            return "Order completed: " + orderService.complete(productOrder);
+            return "Order completed: " + printService.printOrder(orderService.complete(productOrder));
         }
         return "Not found";
     }

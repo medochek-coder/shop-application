@@ -26,8 +26,7 @@ public class Basket {
     public String toString() {
         return "Basket{" +
                 "id=" + id +
-                ", basketRowList=" + basketRowList +
-                '}' +
-                "\n";
+                ", rows=" + basketRowList +
+                '}';
     }
 }

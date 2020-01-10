@@ -30,11 +30,10 @@ public class BasketRow {
 
     @Override
     public String toString() {
-        return "BasketRow{" +
+        return "row{" +
                 "id=" + id +
                 ", count=" + count +
                 ", product=" + product +
-                '}' +
-                "\n";
+                '}';
     }
 }
