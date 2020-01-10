@@ -194,7 +194,7 @@ public class ShellService {
     }
 
     @ShellMethod(value = "Get all completed orders command", key = {"gaco"})
-    public String getAllCompletedOrders(@ShellOption Long id) {
+    public String getAllCompletedOrders() {
         List<ProductOrder> productOrders = orderService.getCompletedOrders();
         if (productOrders != null) {
             return "Found orders: " + productOrders;
