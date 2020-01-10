@@ -106,7 +106,7 @@ public class ShellService {
     }
 
     @ShellMethod(value = "Increase or decrease count product in basket command", key = {"incOrDecProdInBas"})
-    public String incOrDecCountProductById(@ShellOption Long idBasket, @ShellOption Long idProduct, @ShellOption(defaultValue = "true") Boolean inc) {
+    public String incOrDecCountProductById(@ShellOption Long idBasket, @ShellOption Long idProduct, @ShellOption boolean inc) {
         Integer result = basketService.incOrDecCountProductById(idBasket, idProduct, inc);
         if (result == 0) {
             return "Product removed from basket";
