@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Table
 @Entity
@@ -22,6 +23,8 @@ public class ProductOrder {
     private String ownerLastName;
     private String ownerPhone;
     private String ownerEmail;
+    private String status;
+    private LocalDateTime date;
 
     @OneToOne
     @JoinColumn(name = "basket_id")
@@ -31,6 +34,8 @@ public class ProductOrder {
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                "date=" + date +
+                "status=" + status +
                 ", ownerFirstName='" + ownerFirstName + '\'' +
                 ", ownerLastName='" + ownerLastName + '\'' +
                 ", ownerPhone='" + ownerPhone + '\'' +

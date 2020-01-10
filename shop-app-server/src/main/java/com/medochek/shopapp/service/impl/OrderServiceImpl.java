@@ -19,23 +19,8 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository repository;
 
     @Override
-    public ProductOrder create(Long basketId, String ownerFirstName, String ownerLastName, String ownerPhone, String ownerEmail) {
-
-        Basket basket = basketService.getById(basketId);
-        if(basket != null) {
-            ProductOrder productOrder = ProductOrder.builder()
-                    .basket(basket)
-                    .ownerFirstName(ownerFirstName)
-                    .ownerLastName(ownerLastName)
-                    .ownerPhone(ownerPhone)
-                    .ownerEmail(ownerEmail)
-                    .build();
-            return repository.save(productOrder);
-        }
-        else {
-            return null;
-        }
-
+    public ProductOrder create(ProductOrder productOrder) {
+        return repository.save(productOrder);
     }
 
     @Override
@@ -45,7 +30,18 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<ProductOrder> getAll() {
-        return repository.findAll();
+        return repository.findByStatus("IN_PROGRESS");
+    }
+
+    @Override
+    public List<ProductOrder> getCompletedOrders() {
+        return repository.findByStatus("COMPLETE");
+    }
+
+    @Override
+    public ProductOrder complete(ProductOrder productOrder) {
+        productOrder.setStatus("COMPLETE");
+        return repository.save(productOrder);
     }
 
     @Override

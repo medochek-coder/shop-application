@@ -101,4 +101,16 @@
         <renameTable newTableName="product_order"
                      oldTableName="order"/>
     </changeSet>
+
+    <changeSet author="irina.kulygina" id="6">
+        <addColumn tableName="product_order">
+            <column name="status" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="${timestamp.type}">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

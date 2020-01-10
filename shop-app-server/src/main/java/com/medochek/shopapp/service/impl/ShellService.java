@@ -9,6 +9,7 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @ShellComponent
@@ -138,8 +139,22 @@ public class ShellService {
     public String createOrder(@ShellOption Long basketId, @ShellOption String ownerFirstName,
                               @ShellOption String ownerLastName, @ShellOption String ownerPhone,
                               @ShellOption String ownerEmail) {
-        ProductOrder productOrder = orderService.create(basketId, ownerFirstName, ownerLastName, ownerPhone, ownerEmail);
-        return "Created order: " + productOrder;
+        Basket basket = basketService.getById(basketId);
+        if (basket == null) {
+            return "Basket not found";
+        }
+        ProductOrder productOrder = ProductOrder.builder()
+                                    .basket(basket)
+                                    .ownerFirstName(ownerFirstName)
+                                    .ownerLastName(ownerLastName)
+                                    .ownerPhone(ownerPhone)
+                                    .ownerEmail(ownerEmail)
+                                    .date(LocalDateTime.now())
+                                    .status("IN_PROGRESS")
+                                    .build();
+
+        //orderService.create(basketId, ownerFirstName, ownerLastName, ownerPhone, ownerEmail);
+        return "Created order: " + orderService.create(productOrder);
 
     }
 
@@ -152,7 +167,7 @@ public class ShellService {
         return "Not found";
     }
 
-    @ShellMethod(value = "Get all orders command", key = {"gao", "getAllOrders"})
+    @ShellMethod(value = "Get all orders in progress command", key = {"gao", "getAllOrders"})
     public String getAllOrders() {
         List<ProductOrder> productOrders = orderService.getAll();
         if (productOrders != null) {
@@ -165,6 +180,24 @@ public class ShellService {
     public String deleteOrder(@ShellOption Long id) {
         orderService.delete(id);
         return "Order deleted";
+    }
+
+    @ShellMethod(value = "Get all completed orders command", key = {"gaco"})
+    public String getAllCompletedOrders(@ShellOption Long id) {
+        List<ProductOrder> productOrders = orderService.getCompletedOrders();
+        if (productOrders != null) {
+            return "Found orders: " + productOrders;
+        }
+        return "Not found";
+    }
+
+    @ShellMethod(value = "Complete order by id command", key = {"compO"})
+    public String completeOrder(@ShellOption Long id) {
+        ProductOrder productOrder = orderService.getById(id);
+        if (productOrder != null) {
+            return "Order completed: " + orderService.complete(productOrder);
+        }
+        return "Not found";
     }
 }
 

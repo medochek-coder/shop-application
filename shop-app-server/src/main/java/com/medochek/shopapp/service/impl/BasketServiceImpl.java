@@ -126,6 +126,39 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
+    public Integer incOrDecCountProductById(Long idBasket, Long idProduct, Boolean increase) {
+        Basket basket = getById(idBasket);
+        Product product = productService.getById(idProduct);
+        if(basket != null && product != null) {
+            BasketRow basketRow = basketRowRepository.findByBasketAndProduct(basket, product);
+            if (basketRow == null && increase) {
+                addProductById(idBasket, idProduct, 1);
+                return 1;
+            }
+            if (basketRow == null && !increase) {
+                return -1;
+            }
+            if(basketRow != null && increase) {
+                changeCountProductById(idBasket, idProduct, basketRow.getCount() + 1);
+                return basketRow.getCount() + 1;
+            }
+            else {
+                Integer count = basketRow.getCount() + countProduct;
+                if (count > 0) {
+                    basketRow.setCount(count);
+                    return count;
+                }
+                else {
+                    deleteProductById(idBasket, idProduct);
+                    return 0;
+                }
+
+            }
+        }
+        return -1;
+    }
+
+    @Override
     public void deleteProductById(Long idBasket, Long idProduct) {
         Basket basket = getById(idBasket);
         Product product = productService.getById(idProduct);
