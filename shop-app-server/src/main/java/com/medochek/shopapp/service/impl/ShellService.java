@@ -105,6 +105,19 @@ public class ShellService {
         return "Product or basket does not exist";
     }
 
+    @ShellMethod(value = "Increase or decrease count product in basket command", key = {"incOrDecProdInBas"})
+    public String incOrDecCountProductById(@ShellOption Long idBasket, @ShellOption Long idProduct, @ShellOption(defaultValue = "true") Boolean inc) {
+        Integer result = basketService.incOrDecCountProductById(idBasket, idProduct, inc);
+        if (result == 0) {
+            return "Product removed from basket";
+        }
+        if (result > 0) {
+            return "Product count in basket = " + result;
+        }
+        return "Product or basket does not exist";
+    }
+
+
     @ShellMethod(value = "Delete product by id in basket command", key = {"dpib", "deleteProductInBasket"})
     public String deleteProductByIdInBasket(@ShellOption Long idBasket, @ShellOption Long idProduct) {
         basketService.deleteProductById(idBasket, idProduct);
@@ -152,8 +165,6 @@ public class ShellService {
                                     .date(LocalDateTime.now())
                                     .status("IN_PROGRESS")
                                     .build();
-
-        //orderService.create(basketId, ownerFirstName, ownerLastName, ownerPhone, ownerEmail);
         return "Created order: " + orderService.create(productOrder);
 
     }
