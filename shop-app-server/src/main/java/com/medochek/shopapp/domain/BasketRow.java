@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Table
 @Entity
 @Data
@@ -24,16 +26,8 @@ public class BasketRow {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "basket_id")
     private Basket basket;
-
-    @Override
-    public String toString() {
-        return "row{" +
-                "id=" + id +
-                ", count=" + count +
-                ", product=" + product +
-                '}';
-    }
 }

@@ -22,15 +22,4 @@ public class Product {
     private String description;
     private String image;
     private Double price;
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", image='" + image + '\'' +
-                ", price=" + price +
-                '}';
-    }
 }

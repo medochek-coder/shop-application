@@ -21,12 +21,4 @@ public class Basket {
 
     @OneToMany(mappedBy = "basket")
     private List<BasketRow> basketRowList;
-
-    @Override
-    public String toString() {
-        return "Basket{" +
-                "id=" + id +
-                ", rows=" + basketRowList +
-                '}';
-    }
 }

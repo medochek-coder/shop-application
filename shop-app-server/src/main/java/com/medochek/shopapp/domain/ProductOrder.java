@@ -29,18 +29,4 @@ public class ProductOrder {
     @OneToOne
     @JoinColumn(name = "basket_id")
     private Basket basket;
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                "date=" + date + '\'' +
-                "status=" + status + '\''  +
-                ", ownerFirstName='" + ownerFirstName + '\'' +
-                ", ownerLastName='" + ownerLastName + '\'' +
-                ", ownerPhone='" + ownerPhone + '\'' +
-                ", ownerEmail='" + ownerEmail + '\'' +
-                ", basket=" + basket +
-                '}';
-    }
 }
