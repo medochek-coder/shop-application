@@ -1,9 +1,7 @@
 package com.medochek.shopapp.service.impl;
 
-import com.medochek.shopapp.domain.Basket;
-import com.medochek.shopapp.domain.ProductOrder;
-import com.medochek.shopapp.domain.Product;
-import com.medochek.shopapp.service.PrintService;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
@@ -11,8 +9,10 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import com.medochek.shopapp.domain.Basket;
+import com.medochek.shopapp.domain.Product;
+import com.medochek.shopapp.domain.ProductOrder;
+import com.medochek.shopapp.service.PrintService;
 
 @ShellComponent
 @Service
@@ -40,7 +40,7 @@ public class ShellService {
                 .image(image)
                 .build();
         product = productService.createOrUpdate(product);
-        return "Created product: " + product;
+        return "Created product: " + printService.print(product);
     }
 
     @ShellMethod(value = "Update product command, parameters: productId(long), productName(string), price(double), " +
@@ -55,14 +55,14 @@ public class ShellService {
                 .image(image)
                 .build();
         product = productService.createOrUpdate(product);
-        return "Updated product: " + product;
+        return "Updated product: " + printService.print(product);
     }
 
     @ShellMethod(value = "Get product by id command, parameters: productId(long)", key = {"p_g"})
     public String getById(@ShellOption Long id) {
         Product product = productService.getById(id);
         if (product != null) {
-            return "Found product: " + product;
+            return "Found product: " + printService.print(product);
         }
         return "Not found";
     }
@@ -71,7 +71,7 @@ public class ShellService {
     public String getAll() {
         List<Product> products = productService.getAll();
         if (products != null) {
-            return "Found products: " + printService.printProductList(products);
+            return "Found products: " + printService.print(products);
         }
         return "Not found";
     }
@@ -85,7 +85,7 @@ public class ShellService {
     @ShellMethod(value = "Create empty basket command", key = {"b_cr"})
     public String createBasket() {
         Basket basket = basketService.createEmpty();
-        return "Created basket: " + printService.printBasket(basket);
+        return "Created basket: " + printService.print(basket);
     }
 
     @ShellMethod(value = "Delete basket by id command, parameters: basketId(long)", key = {"b_del"})
@@ -145,7 +145,7 @@ public class ShellService {
     public String getBasketById(@ShellOption Long idBasket) {
         Basket basket = basketService.getById(idBasket);
         if (basket != null) {
-            return "Found basket: " + printService.printBasket(basket);
+            return "Found basket: " + printService.print(basket);
         }
         return "Not found";
     }
@@ -154,7 +154,7 @@ public class ShellService {
     public String getAllBasket() {
         List<Basket> baskets = basketService.getAll();
         if (baskets != null) {
-            return "Found baskets: " + printService.printBasketList(baskets);
+            return "Found baskets: " + printService.print(baskets);
         }
         return "Not found";
     }
@@ -177,7 +177,7 @@ public class ShellService {
                                     .date(LocalDateTime.now())
                                     .status("IN_PROGRESS")
                                     .build();
-        return "Created order: " + printService.printOrder(orderService.create(productOrder));
+        return "Created order: " + printService.print(orderService.create(productOrder));
 
     }
 
@@ -185,7 +185,7 @@ public class ShellService {
     public String getOrderById(@ShellOption Long idOrder) {
         ProductOrder productOrder = orderService.getById(idOrder);
         if (productOrder != null) {
-            return "Found order: " + printService.printOrder(productOrder);
+            return "Found order: " + printService.print(productOrder);
         }
         return "Not found";
     }
@@ -194,7 +194,7 @@ public class ShellService {
     public String getAllOrders() {
         List<ProductOrder> productOrders = orderService.getAll();
         if (productOrders != null) {
-            return "Found orders: " + printService.printOrderList(productOrders);
+            return "Found orders: " + printService.print(productOrders);
         }
         return "Not found";
     }
@@ -209,7 +209,7 @@ public class ShellService {
     public String getAllCompletedOrders() {
         List<ProductOrder> productOrders = orderService.getCompletedOrders();
         if (productOrders != null) {
-            return "Found orders: " + printService.printOrderList(productOrders);
+            return "Found orders: " + printService.print(productOrders);
         }
         return "Not found";
     }
@@ -218,7 +218,7 @@ public class ShellService {
     public String completeOrder(@ShellOption Long id) {
         ProductOrder productOrder = orderService.getById(id);
         if (productOrder != null) {
-            return "Order completed: " + printService.printOrder(orderService.complete(productOrder));
+            return "Order completed: " + printService.print(orderService.complete(productOrder));
         }
         return "Not found";
     }
