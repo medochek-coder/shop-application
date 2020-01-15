@@ -1,3 +1,19 @@
-<div>
-    {{selectedProduct.name}}
+<div class="product">
+    <img class="image" mat-card-image src="{{selectedProduct.photo}}" alt="Фото">
+    <div class="main-block">
+        <h1 class="js-product-title">{{selectedProduct.name}}</h1>
+        <div class="product-title on-page"></div>
+        <div class="description">
+            <p>
+            {{selectedProduct.description}}
+            </p>
+        </div>
+        <div class="price">{{selectedProduct.price}}&nbsp;eur.</div>
+        <div class="number">
+            <button class="minus">-</button>
+            <input type="text" value="1" min="1" max="1000" name="quantity" class="input-number">
+            <button class="plus">+</button>
+        </div>
+        <button class="buy">В корзину</button>
+    </div>
 </div>
