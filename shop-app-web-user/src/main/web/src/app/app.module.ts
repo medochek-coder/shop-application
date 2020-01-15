@@ -15,6 +15,8 @@ import { ProductService } from "./services/product.service";
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
 import { ProductComponent } from './components/product/product.component';
+import { BasketComponent } from './components/basket/basket.component';
+import { OrderComponent } from './components/order/order.component';
 
 /*Popups*/
 
@@ -30,13 +32,17 @@ import { ProductComponent } from './components/product/product.component';
     declarations: [
         AppComponent,
         HomeComponent,
-        ProductComponent
+        ProductComponent,
+        BasketComponent,
+        OrderComponent
     ],
     entryComponents: [
     ],
     providers: [
         HomeComponent,
         ProductComponent,
+        BasketComponent,
+        OrderComponent,
         ProductService
     ],
     bootstrap: [AppComponent]

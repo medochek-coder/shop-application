@@ -8,12 +8,14 @@
             {{selectedProduct.description}}
             </p>
         </div>
-        <div class="price">{{selectedProduct.price}}&nbsp;eur.</div>
+        <div class="price">{{selectedProduct.price}} &euro;</div>
         <div class="number">
-            <button class="minus">-</button>
-            <input type="text" value="1" min="1" max="1000" name="quantity" class="input-number">
-            <button class="plus">+</button>
+            <button mat-raised-button class="minus">-</button>
+            <mat-form-field class="example-full-width">
+                <input matInput type="text" value="1" min="1" max="1000" class="input-number">
+            </mat-form-field>
+            <button mat-raised-button class="plus">+</button>
         </div>
-        <button class="buy">В корзину</button>
+        <button mat-raised-button class="buy">В корзину</button>
     </div>
 </div>

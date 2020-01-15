@@ -1,4 +1,11 @@
-﻿<mat-toolbar color="primary">
-    <span class="app-title">Магазин "Медошкины пышки"</span>
+﻿<mat-toolbar class="panel" color="primary">
+    <div class="panel-left" (click)="gotoHomePage()">
+        <img class="logo" src="../assets/image/logo.png" alt="Logo">
+        <span class="app-title">Магазин "Медошкины пышки"</span>
+    </div>
+    <div class="panel-right" (click)="gotoBasketPage()">
+        <p class="basket-info">Всего товаров: 0, на сумму 0 &euro;</p>
+        <img class="basket" src="../assets/image/basket.png" alt="Basket">
+    </div>
 </mat-toolbar>
 <router-outlet></router-outlet>

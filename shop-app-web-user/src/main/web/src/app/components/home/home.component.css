@@ -27,6 +27,12 @@
 .image {
     width: 350px;
     height: 350px;
+    /*border: 1px solid gray;*/
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (min-width: 481px) {
