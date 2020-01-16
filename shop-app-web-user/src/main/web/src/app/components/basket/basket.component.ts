@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {BasketService} from "../../services/basket.service";
-import {ProductService} from "../../services/product.service";
-import {Product} from "../../models/product";
 import {Basket} from "../../models/basket";
 
 
@@ -32,5 +30,13 @@ export class BasketComponent implements OnInit {
 
     gotoOrderPage() {
         this.router.navigate(['order']);
+    }
+
+    calculateTotalSum() {
+        let totalSum = 0;
+        this.basket.basketRows.forEach(basketRow => {
+            totalSum += basketRow.product.price * basketRow.count;
+        });
+        return totalSum;
     }
 }

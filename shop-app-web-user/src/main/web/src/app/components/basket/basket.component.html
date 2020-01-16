@@ -30,8 +30,17 @@
 
             <td class="td"><button mat-button>❌</button></td>
         </tr>
+        <tr>
+            <td colspan="2"></td>
+            <td class="price">
+                Итого:
+            </td>
+            <td class="price">
+                {{calculateTotalSum()}} &euro;
+            </td>
+            <td class="td">
+                <button mat-raised-button (click)="gotoOrderPage()" color="warn">Сделать заказ</button>
+            </td>
+        </tr>
     </table>
-
-    <div>Итого: </div>
-    <button mat-raised-button (click)="gotoOrderPage()">Сделать заказ</button>
 </div>
