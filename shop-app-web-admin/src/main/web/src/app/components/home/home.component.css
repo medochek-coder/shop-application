@@ -1,9 +1,1 @@
-.home {
-}
 
-@media screen and (min-width: 481px) {
-    .home {
-        display: flex;
-        min-height: calc(100vh - 64px);
-    }
-}

@@ -23,3 +23,4 @@ shop-app-web-user/src/main/web/node_modules/
 *.iws
 *.iml
 *.ipr
+*.log

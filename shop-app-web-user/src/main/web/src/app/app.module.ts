@@ -10,9 +10,14 @@ import { routing } from './app.routing';
 import { MainUiModule } from './modules/main-ui/main-ui.module';
 
 /*Services*/
+import { ProductService } from "./services/product.service";
+import { BasketService } from "./services/basket.service";
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
+import { ProductComponent } from './components/product/product.component';
+import { BasketComponent } from './components/basket/basket.component';
+import { OrderComponent } from './components/order/order.component';
 
 /*Popups*/
 
@@ -27,12 +32,20 @@ import { HomeComponent } from './components/home/home.component';
     ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        ProductComponent,
+        BasketComponent,
+        OrderComponent
     ],
     entryComponents: [
     ],
     providers: [
-        HomeComponent
+        HomeComponent,
+        ProductComponent,
+        BasketComponent,
+        OrderComponent,
+        ProductService,
+        BasketService
     ],
     bootstrap: [AppComponent]
 })

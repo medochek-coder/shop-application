@@ -1,0 +1,59 @@
+.product {
+    display: flex;
+}
+.image {
+    width: 350px;
+    height: 350px;
+    margin: 50px 50px;
+}
+.main-block {
+    margin: 50px 50px;
+    width: 550px;
+    height: 350px;
+}
+.description {
+    margin-bottom: 30px;
+    height: 140px;
+}
+.product-title.on-page {
+    font-weight: 700;
+    padding: 0;
+    margin-bottom: 30px;
+}
+.price {
+    color: #dd3f46;
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.input-number {
+    background: #eeeeee;
+    height: 40px;
+    font-size: 1em;
+    vertical-align: top;
+    text-align: center;
+    width: 100%;
+    margin-top: -20px;
+}
+.minus, .plus {
+
+    margin: 0 4px 0 4px;
+    font: 20px Tahoma;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.number {
+    -webkit-text-stroke-width: medium;
+    display: inline-flex;
+}
+
+.buy {
+    margin: 0 50px;
+    width: 100px;
+    height: 40px;
+    font-size: 1em;
+    vertical-align: top;
+    text-align: center;
+}

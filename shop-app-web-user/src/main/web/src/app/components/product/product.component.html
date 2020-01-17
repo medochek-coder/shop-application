@@ -1,0 +1,21 @@
+<div class="product">
+    <img class="image" mat-card-image src="{{selectedProduct.photo}}" alt="Фото">
+    <div class="main-block">
+        <h1 class="js-product-title">{{selectedProduct.name}}</h1>
+        <div class="product-title on-page"></div>
+        <div class="description">
+            <p>
+            {{selectedProduct.description}}
+            </p>
+        </div>
+        <div class="price">{{selectedProduct.price}} &euro;</div>
+        <div class="number">
+            <button mat-raised-button class="minus">-</button>
+            <mat-form-field>
+                <input matInput type="text" value="1" min="1" max="1000" class="input-number">
+            </mat-form-field>
+            <button mat-raised-button class="plus">+</button>
+        </div>
+        <button mat-raised-button class="buy">В корзину</button>
+    </div>
+</div>
