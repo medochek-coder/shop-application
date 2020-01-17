@@ -10,9 +10,15 @@ import { routing } from './app.routing';
 import { MainUiModule } from './modules/main-ui/main-ui.module';
 
 /*Services*/
+import { ProductService } from "./services/product.service";
+import { BasketService } from "./services/basket.service";
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
+import {OrdersComponent} from "./components/orders/orders.component";
+import {OrderDetailsComponent} from "./components/odred-details/order-details.component";
+import {ProductComponent} from "./components/product/product.component";
+import {HistoryComponent} from "./components/history/history.component";
 
 /*Popups*/
 
@@ -27,12 +33,22 @@ import { HomeComponent } from './components/home/home.component';
     ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        ProductComponent,
+        OrdersComponent,
+        OrderDetailsComponent,
+        HistoryComponent
     ],
     entryComponents: [
     ],
     providers: [
-        HomeComponent
+        HomeComponent,
+        ProductComponent,
+        OrdersComponent,
+        OrderDetailsComponent,
+        HistoryComponent,
+        ProductService,
+        BasketService
     ],
     bootstrap: [AppComponent]
 })
