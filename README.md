@@ -15,10 +15,12 @@ mvn spring-boot:run
 - Run Clients:
 Go to shop-web-app-user/src/man/web directory and run command
 ```bash
+npm install
 npm start
 ```
 Go to shop-web-app-admin/src/man/web directory and run command
 ```bash
+npm install
 npm start
 ```
 - Run User App:
