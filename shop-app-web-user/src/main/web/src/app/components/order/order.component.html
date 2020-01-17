@@ -1,3 +1,37 @@
 <div class="order">
-    <p>Введите данные для заказа</p>
+    <div class="page-header">
+        <h1>
+
+            Введите данные для заказа
+
+        </h1>
+    </div>
+    <form class="example-form">
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width">
+                <input matInput placeholder="Имя">
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width">
+                <input matInput placeholder="Фамилия">
+            </mat-form-field></td>
+        </tr></table>
+
+        <mat-form-field class="example-full-width">
+            <span matPrefix>+ &nbsp;</span>
+            <input type="tel" matInput placeholder="Телефон">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" [formControl]="emailFormControl">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <button class="button" mat-raised-button color="warn">Заказать</button>
+    </form>
 </div>

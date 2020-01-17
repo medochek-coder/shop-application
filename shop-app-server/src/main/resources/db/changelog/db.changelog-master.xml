@@ -113,4 +113,11 @@
         </addColumn>
     </changeSet>
 
+    <changeSet author="irina.kulygina" id="7">
+        <addColumn tableName="product">
+            <column name="price_sale" type="DOUBLE">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

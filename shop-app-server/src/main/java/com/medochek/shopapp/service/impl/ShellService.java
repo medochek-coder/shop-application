@@ -30,29 +30,31 @@ public class ShellService {
     private PrintService printService;
 
     @ShellMethod(value = "Create product command, parameters: productName(string), price(double), " +
-            "description(string, defaultValue = ''), imageLink(string, defaultValue = '')", key = { "p_cr" })
+            "description(string, defaultValue = ''), imageLink(string, defaultValue = '', priceSale(double, defaultValue = null)", key = { "p_cr" })
     public String create(@ShellOption String name, @ShellOption Double price, @ShellOption(defaultValue = "") String description,
-            @ShellOption(defaultValue = "") String image) {
+            @ShellOption(defaultValue = "") String image, @ShellOption(defaultValue = ShellOption.NULL) Double priceSale) {
         Product product = Product.builder()
                 .name(name)
                 .price(price)
                 .description(description)
                 .image(image)
+                .priceSale(priceSale)
                 .build();
         product = productService.createOrUpdate(product);
         return "Created product: " + printService.print(product);
     }
 
     @ShellMethod(value = "Update product command, parameters: productId(long), productName(string), price(double), " +
-            "description(string, defaultValue = ''), imageLink(string, defaultValue = '')", key = { "p_upd", })
+            "description(string, defaultValue = ''), imageLink(string, defaultValue = ''), priceSale(double, defaultValue = null)", key = { "p_upd", })
     public String update(@ShellOption Long id, @ShellOption String name, @ShellOption Double price, @ShellOption(defaultValue = "") String description,
-            @ShellOption(defaultValue = "") String image) {
+            @ShellOption(defaultValue = "") String image, @ShellOption(defaultValue = ShellOption.NULL) Double priceSale) {
         Product product = Product.builder()
                 .id(id)
                 .name(name)
                 .price(price)
                 .description(description)
                 .image(image)
+                .priceSale(priceSale)
                 .build();
         product = productService.createOrUpdate(product);
         return "Updated product: " + printService.print(product);
@@ -75,6 +77,25 @@ public class ShellService {
         }
         return "Not found";
     }
+
+    @ShellMethod(value = "Get all discount products command", key = { "p_g_all_sale" })
+    public String getAllSale() {
+        List<Product> products = productService.getAllSale();
+        if (products != null) {
+            return "Found discount products: " + printService.print(products);
+        }
+        return "Not found";
+    }
+
+    @ShellMethod(value = "Get all products without discount command", key = { "p_g_all_no_sale" })
+    public String getAllNoSale() {
+        List<Product> products = productService.getAllNoSale();
+        if (products != null) {
+            return "Found products without discount: " + printService.print(products);
+        }
+        return "Not found";
+    }
+
 
     @ShellMethod(value = "Delete product by id command, parameters: productId(long)", key = { "p_del" })
     public String deleteById(@ShellOption Long id) {

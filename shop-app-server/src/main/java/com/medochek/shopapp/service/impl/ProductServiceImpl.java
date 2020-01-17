@@ -30,6 +30,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getAllSale() {
+        return repository.findByPriceSaleIsNotNull();
+    }
+
+    @Override
+    public List<Product> getAllNoSale() {
+        return repository.findByPriceSaleIsNull();
+    }
+
+    @Override
     public void deleteById(Long id) {
         Product product = getById(id);
         if (product != null) {

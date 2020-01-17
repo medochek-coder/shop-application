@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
     selector: 'order',
@@ -16,4 +16,8 @@ export class OrderComponent implements OnInit {
 
     ngOnInit() {
     }
+    emailFormControl = new FormControl('', [
+        Validators.required,
+        Validators.email,
+    ]);
 }
