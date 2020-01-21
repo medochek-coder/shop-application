@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Product} from "../../models/product";
+import {ActivatedRoute} from "@angular/router";
+import {ProductService} from "../../services/product.service";
 
 @Component({
     selector: 'product',
@@ -9,16 +12,30 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ProductComponent implements OnInit {
+    public products: Product[] = [];
+    public selectedProduct: Product;
+    public isCreate: boolean;
 
-    constructor() {
-        // как параметр пути мы передаем или id товара который будем редактировать,
-        // или слово new при создании нового товара, в зависимости от этого страничка
-        // будет выглядеть немного по-разному, т.е позволять нам отредактировать текущий товар
-        // или создать новый, по сути, текствоые поля для создания товара будут просто
-        // заполняться данными имеющегося товара, если мы редактируем и будут пустые если создаем
-        // новый. Вот и все различия
+    constructor(private route: ActivatedRoute,
+                private productService: ProductService) {
     }
 
     ngOnInit() {
+        if (this.route.snapshot.paramMap.get('id').includes('new')) {
+            this.isCreate = true;
+        } else {
+            this.isCreate = false;
+        }
+        if (!this.isCreate) {
+            let productId = Number(this.route.snapshot.paramMap.get('id'));
+            this.products = this.productService.getProducts();
+            this.products.forEach(product => {
+                if (product.id == productId) {
+                    this.selectedProduct = product;
+                }
+            });
+        } else {
+            this.selectedProduct = new Product(null, "", null, "", "");
+        }
     }
 }

@@ -1,1 +1,45 @@
 
+.home {
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+}
+
+.product-list {
+    display: flex;
+    padding: 10px 10px 10px 10px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    width: 350px;
+    height: 550px;
+}
+
+.product-card-wrapper {
+    padding: 10px 10px 10px 10px;
+    flex: 1 0 20%;
+}
+
+.image {
+    width: 350px;
+    height: 350px;
+    /*border: 1px solid gray;*/
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+
+}
+
+@media screen and (min-width: 481px) {
+    .home {
+        display: flex;
+        min-height: calc(100vh - 64px);
+    }
+}

@@ -1,5 +1,21 @@
-﻿<div>
-    Тут отобрази список товаров как на домашней странице пользовательского приложения приложения,
-    только вместо кнопки "подробнее", будут 2 кнопки, "изменить" и "удалить"
+﻿<div class="home">
+    <div class="top">
+    </div>
+    <div class="product-list">
+        <div class="product-card-wrapper" *ngFor="let product of products">
+            <mat-card class="product-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{product.name}}</mat-card-title>
+                    <mat-card-subtitle>{{product.price}} &euro;</mat-card-subtitle>
+                </mat-card-header>
+                <img class="image" mat-card-image src="{{product.photo}}" alt="Фото ватрушки">
+                <mat-card-actions class="actions">
+                    <button mat-button (click)="updateProduct(product.id)">Изменить</button>
+                    <button mat-button (click)="deleteProduct(product.id)">Удалить</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
 </div>
 

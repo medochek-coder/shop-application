@@ -9,7 +9,7 @@
         <mat-nav-list class="menu">
             <div>
                 <a mat-list-item routerLink="/home">Список товаров</a>
-                <a mat-list-item routerLink="/product/new">Добавить товар</a>
+                <a mat-list-item (click)="gotoNewProductPage()">Добавить товар</a>
                 <a mat-list-item routerLink="/orders">Список заказов</a>
                 <a mat-list-item routerLink="/history">История заказов</a>
             </div>

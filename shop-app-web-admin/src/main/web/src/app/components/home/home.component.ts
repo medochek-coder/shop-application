@@ -1,4 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import {Product} from "../../models/product";
+import {ProductService} from "../../services/product.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'home',
@@ -10,9 +13,25 @@
 
 export class HomeComponent implements OnInit {
 
-    constructor() {
+    public products: Product[] = [];
+
+    constructor(private productService: ProductService,
+                private router: Router) {
     }
 
     ngOnInit() {
+        this.initProducts();
+    }
+
+    private initProducts() {
+        this.products = this.productService.getProducts();
+    }
+
+    public updateProduct(productId: number) {
+        this.router.navigate(['product/ +' + productId]);
+    }
+
+    public deleteProduct(productId: number) {
+        //this.router.navigate(['product/ +' + productId]);
     }
 }
