@@ -1,0 +1,39 @@
+
+.orders {
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+}
+
+.order-list {
+    display: flex;
+    padding: 10px 10px 10px 10px;
+    flex-wrap: wrap;
+}
+
+.order-card {
+    width: 350px;
+    height: 350px;
+}
+
+.order-card-wrapper {
+    padding: 10px 10px 10px 10px;
+    flex: 1 0 20%;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+
+}
+
+@media screen and (min-width: 481px) {
+    .home {
+        display: flex;
+        min-height: calc(100vh - 64px);
+    }
+}

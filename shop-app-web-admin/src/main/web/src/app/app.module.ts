@@ -12,11 +12,12 @@ import { MainUiModule } from './modules/main-ui/main-ui.module';
 /*Services*/
 import { ProductService } from "./services/product.service";
 import { BasketService } from "./services/basket.service";
+import { ProductOrderService } from "./services/productOrder.service";
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
 import {OrdersComponent} from "./components/orders/orders.component";
-import {OrderDetailsComponent} from "./components/odred-details/order-details.component";
+import {OrderDetailsComponent} from "./components/order-details/order-details.component";
 import {ProductComponent} from "./components/product/product.component";
 import {HistoryComponent} from "./components/history/history.component";
 
@@ -48,7 +49,8 @@ import {HistoryComponent} from "./components/history/history.component";
         OrderDetailsComponent,
         HistoryComponent,
         ProductService,
-        BasketService
+        BasketService,
+        ProductOrderService
     ],
     bootstrap: [AppComponent]
 })

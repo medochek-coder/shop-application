@@ -1,0 +1,60 @@
+<div class="basket-home">
+    <div>
+        <h1>
+            Заказ № {{selectedOrder.id}}
+        </h1>
+        <button *ngIf="isInProgress(selectedOrder)" mat-flat-button color="warn" class="button"><h4>Выполнено</h4></button>
+        <table matSort class="table">
+            <tr>
+                <th mat-sort-header="status">Статус</th>
+                <th mat-sort-header="firstName">Имя</th>
+                <th mat-sort-header="lastName">Фамилия</th>
+                <th mat-sort-header="telephone">Номер телефона</th>
+                <th mat-sort-header="email">Email</th>
+                <th mat-sort-header="price">Стоимость</th>
+                <th mat-sort-header="date">Дата заказа</th>
+            </tr>
+
+            <tr>
+                <td *ngIf="isInProgress(selectedOrder)">Не выполнен</td>
+                <td *ngIf="!isInProgress(selectedOrder)">Выполнен</td>
+                <td class="td">{{selectedOrder.ownerFirstName}}</td>
+                <td class="td">{{selectedOrder.ownerLastName}}</td>
+                <td class="td">{{selectedOrder.ownerPhone}}</td>
+                <td class="td">{{selectedOrder.ownerEmail}}</td>
+                <td class="td">{{calculateTotalSum()}} &euro;</td>
+                <td class="td">{{selectedOrder.date}}</td>
+            </tr>
+        </table>
+    </div>
+    <table matSort class="table">
+        <tr>
+            <th mat-sort-header="image"></th>
+            <th mat-sort-header="name">Наименование</th>
+            <th mat-sort-header="price">Цена 1 шт.</th>
+            <th mat-sort-header="count">Количество</th>
+            <th mat-sort-header="price">Стоимость</th>
+        </tr>
+
+        <tr *ngFor="let basketRow of selectedOrder.basket.basketRows">
+            <td class="td"><img class="image" mat-card-image src="{{basketRow.product.photo}}" alt="Фото"></td>
+            <td class="td">{{basketRow.product.name}}</td>
+            <td class="price">{{basketRow.product.price}} &euro;</td>
+            <td class="td"><div class="price">
+                {{basketRow.count}}
+            </div></td>
+
+            <td class="price">{{basketRow.product.price*basketRow.count}} &euro;</td>
+
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td class="price">
+                Итого:
+            </td>
+            <td class="price">
+                {{calculateTotalSum()}} &euro;
+            </td>
+        </tr>
+    </table>
+</div>
