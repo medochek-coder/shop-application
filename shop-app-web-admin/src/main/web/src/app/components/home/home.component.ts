@@ -2,6 +2,7 @@
 import {Product} from "../../models/product";
 import {ProductService} from "../../services/product.service";
 import {Router} from "@angular/router";
+import {ProductList} from "../../models/productList";
 
 @Component({
     selector: 'home',
@@ -24,7 +25,10 @@ export class HomeComponent implements OnInit {
     }
 
     private initProducts() {
-        this.products = this.productService.getProducts();
+        this.productService.getProducts().subscribe(data => {
+            let products = new ProductList(data);
+            this.products = products.productList;
+        });
     }
 
     public updateProduct(productId: number) {
@@ -32,6 +36,9 @@ export class HomeComponent implements OnInit {
     }
 
     public deleteProduct(productId: number) {
-        //this.router.navigate(['product/ +' + productId]);
+        this.productService.deleteProductById(productId).subscribe(date => {
+            this.router.navigate(['home']);
+            this.ngOnInit();
+        });
     }
 }

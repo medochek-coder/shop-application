@@ -12,10 +12,10 @@
         <div class="number">
             <button mat-raised-button class="minus">-</button>
             <mat-form-field>
-                <input matInput type="text" value="1" min="1" max="1000" class="input-number">
+                <input matInput type="text" min="1" max="1000" class="input-number" [(ngModel)]="count">
             </mat-form-field>
             <button mat-raised-button class="plus">+</button>
         </div>
-        <button mat-raised-button class="buy">В корзину</button>
+        <button mat-raised-button class="buy" (click)="addProductToBasket()">В корзину</button>
     </div>
 </div>

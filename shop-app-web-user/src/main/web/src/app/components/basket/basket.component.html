@@ -15,7 +15,7 @@
             <th mat-sort-header="cancel">Отменить</th>
         </tr>
 
-        <tr *ngFor="let basketRow of basket.basketRows">
+        <tr *ngFor="let basketRow of basket.basketRows.basketRowList">
             <td class="td"><img class="image" mat-card-image src="{{basketRow.product.photo}}" alt="Фото"></td>
             <td class="td">{{basketRow.product.name}}</td>
             <td class="td"><div class="number">

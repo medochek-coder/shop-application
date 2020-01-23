@@ -13,6 +13,7 @@ import { MainUiModule } from './modules/main-ui/main-ui.module';
 import { ProductService } from "./services/product.service";
 import { BasketService } from "./services/basket.service";
 import {ProductOrderService} from "./services/productOrder.service";
+import {SharedService} from "./services/shared.service";
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
@@ -47,7 +48,8 @@ import { OrderComponent } from './components/order/order.component';
         OrderComponent,
         ProductService,
         BasketService,
-        ProductOrderService
+        ProductOrderService,
+        SharedService
     ],
     bootstrap: [AppComponent]
 })

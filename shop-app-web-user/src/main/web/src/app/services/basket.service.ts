@@ -3,27 +3,55 @@ import {Product} from "../models/product";
 import {Basket} from "../models/basket";
 import {ProductService} from "../services/product.service";
 import {BasketRow} from "../models/basketRow";
+import {SharedService} from "./shared.service";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class BasketService {
-    constructor(private productService: ProductService) {
+
+    private readonly SERVER_URL: string;
+
+    private readonly GET_BASKET_BY_ID: string;
+    private readonly CREATE_BASKET: string;
+    private readonly ADD_PRODUCT_BY_ID: string;
+    private readonly DELETE_BASKET_BY_ID: string;
+
+
+    constructor(private shared: SharedService,
+                private http: HttpClient) {
+        this.SERVER_URL = this.shared.getServerURL();
+        this.CREATE_BASKET = this.SERVER_URL + '/api/basket/create';
+        this.GET_BASKET_BY_ID = this.SERVER_URL + '/api/basket/get/{id}';
+        this.ADD_PRODUCT_BY_ID = this.SERVER_URL + '/api/basket/add/{idB}/{idP}/{c}';
+        this.DELETE_BASKET_BY_ID = this.SERVER_URL + '/api/basket/delete/{id}';
     }
 
-    public getBasket(): Basket {
-        let allProducts = [];
-        allProducts = this.productService.getProducts();
-        let basket = new Basket(1);
-        let basketRow1 = new BasketRow(1,3, basket, allProducts[2]);
-        let basketRow2 = new BasketRow(2,1, basket, allProducts[5]);
-        let basketRow3 = new BasketRow(3,33, basket, allProducts[1]);
-        let basketRow4 = new BasketRow(4,6, basket, allProducts[7]);
-        basket.basketRows.push(basketRow1);
-        basket.basketRows.push(basketRow2);
-        basket.basketRows.push(basketRow3);
-        basket.basketRows.push(basketRow4);
-        return basket;
+    public getBasketById(basketId: Number) {
+        const regExp = /{id}/gi;
+        const url = this.GET_BASKET_BY_ID.replace(regExp, basketId.toString());
+        return this.http.get<Observable<Object>>(url);
+    }
+
+    public createBasket() {
+        return this.http.post<Observable<Object>>(this.CREATE_BASKET, null);
+    }
+
+    public deleteBasketById(basketId: Number) {
+        const regExp = /{id}/gi;
+        const url = this.DELETE_BASKET_BY_ID.replace(regExp, basketId.toString());
+        return this.http.delete<Observable<Object>>(url);
+    }
+
+    public addProductById(basketId: Number, productId: Number, count: Number) {
+        const idB = /{idB}/gi;
+        const idP = /{idP}/gi;
+        const c = /{c}/gi;
+        const url = this.ADD_PRODUCT_BY_ID.replace(idB, basketId.toString()).replace(idP, productId.toString())
+            .replace(c, count.toString());
+        return this.http.post<Observable<Object>>(url, null);
     }
 }

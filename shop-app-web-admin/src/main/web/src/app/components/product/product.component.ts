@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../../models/product";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../../services/product.service";
 
 @Component({
@@ -12,11 +12,11 @@ import {ProductService} from "../../services/product.service";
 })
 
 export class ProductComponent implements OnInit {
-    public products: Product[] = [];
     public selectedProduct: Product;
     public isCreate: boolean;
 
     constructor(private route: ActivatedRoute,
+                private routing: Router,
                 private productService: ProductService) {
     }
 
@@ -28,14 +28,25 @@ export class ProductComponent implements OnInit {
         }
         if (!this.isCreate) {
             let productId = Number(this.route.snapshot.paramMap.get('id'));
-            this.products = this.productService.getProducts();
-            this.products.forEach(product => {
-                if (product.id == productId) {
-                    this.selectedProduct = product;
-                }
+            this.productService.getProductById(productId).subscribe(data => {
+                this.selectedProduct = new Product(data);
             });
+
         } else {
-            this.selectedProduct = new Product(null, "", null, "", "");
+            this.selectedProduct = new Product({
+                id: null,
+                name: '',
+                description: '',
+                image: '',
+                price: '',
+                priceSale: null
+            });
         }
+    }
+
+    createProduct() {
+        this.productService.createProduct(this.selectedProduct).subscribe(date => {
+            this.routing.navigate(['home']);
+        });
     }
 }
