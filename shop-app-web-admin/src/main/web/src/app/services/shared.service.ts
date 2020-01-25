@@ -11,7 +11,7 @@ export class SharedService {
     private HOST_DEV = 'http://localhost';
     private PORT_DEV = '8080';
 
-    private HOST_PROD = 'https://web-shop-admin.herokuapp.com';
+    private HOST_PROD = 'https://web-shop-admintool.herokuapp.com';
 
     constructor() {}
 
