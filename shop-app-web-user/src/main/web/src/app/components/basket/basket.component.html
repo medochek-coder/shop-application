@@ -1,0 +1,43 @@
+<div class="basket-home">
+    <div class="page-header">
+        <p>Корзина</p>
+    </div>
+    <table matSort class="table">
+        <tr>
+            <th mat-sort-header="image"></th>
+            <th mat-sort-header="name">Наименование</th>
+            <th mat-sort-header="count">Количество</th>
+            <th mat-sort-header="price">Цена 1шт.</th>
+            <th mat-sort-header="priceAll">Стоимость</th>
+            <th mat-sort-header="cancel">Отменить</th>
+        </tr>
+        <tr *ngFor="let basketRow of basket.basketRows.basketRowList">
+            <td class="td"><img class="row-image" mat-card-image src="{{basketRow.product.photo}}" alt="Фото"></td>
+            <td class="td">{{basketRow.product.name}}</td>
+
+            <td class="td"><div class="number">
+                <button mat-raised-button class="minus" (click)="countMinus(basketRow, basketRow.count)">-</button>
+                <mat-form-field>
+                    <input [disabled]="true" matInput type="text" value={{basketRow.count}} min="1" max="1000" class="input-number">
+                </mat-form-field>
+                <button mat-raised-button class="plus" (click)="countPlus(basketRow, basketRow.count)">+</button>
+            </div></td>
+            <td class="price">{{basketRow.product.price}} &euro;</td>
+            <td class="price">{{basketRow.product.price*basketRow.count}} &euro;</td>
+
+            <td class="td"><button mat-button (click)="countZero(basketRow)">❌</button></td>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td class="price">
+                Итого:
+            </td>
+            <td class="price">
+                {{calculateTotalSum()}} &euro;
+            </td>
+            <td class="td">
+                <button mat-raised-button [disabled]="basket.basketRows.basketRowList.length === 0" (click)="gotoOrderPage()" color="warn">Сделать заказ</button>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,26 @@
+<div class="product">
+    <div class="change-image">
+        <img class="image" mat-card-image src="{{selectedProduct.photo}}" alt="Фото" *ngIf="selectedProduct.photo.trim() !== ''">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Фото продукта, url" [(ngModel)]="selectedProduct.photo">
+        </mat-form-field>
+    </div>
+
+    <div class="main-block">
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Название продукта" [(ngModel)]="selectedProduct.name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Описание продукта" class="description" [(ngModel)]="selectedProduct.description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Цена,  &euro;" [(ngModel)]="selectedProduct.price">
+        </mat-form-field>
+
+        <button *ngIf="!isCreate" mat-flat-button color="warn" class="save-button" (click)="createProduct()">Сохранить изменения</button>
+        <button *ngIf="isCreate" mat-flat-button color="warn" class="save-button" (click)="createProduct()">Создать</button>
+    </div>
+</div>

@@ -10,11 +10,19 @@ import { routing } from './app.routing';
 import { MainUiModule } from './modules/main-ui/main-ui.module';
 
 /*Services*/
+import { ProductService } from "./services/product.service";
+import { BasketService } from "./services/basket.service";
+import {ProductOrderService} from "./services/productOrder.service";
+import {SharedService} from "./services/shared.service";
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
+import { ProductComponent } from './components/product/product.component';
+import { BasketComponent } from './components/basket/basket.component';
+import { OrderComponent } from './components/order/order.component';
 
 /*Popups*/
+import {ActionPopup} from "./components/pupup/action.popup";
 
 @NgModule({
     imports: [
@@ -27,12 +35,25 @@ import { HomeComponent } from './components/home/home.component';
     ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        ProductComponent,
+        BasketComponent,
+        OrderComponent,
+        ActionPopup
     ],
     entryComponents: [
+        ActionPopup
     ],
     providers: [
-        HomeComponent
+        HomeComponent,
+        ProductComponent,
+        BasketComponent,
+        OrderComponent,
+        ActionPopup,
+        ProductService,
+        BasketService,
+        ProductOrderService,
+        SharedService
     ],
     bootstrap: [AppComponent]
 })

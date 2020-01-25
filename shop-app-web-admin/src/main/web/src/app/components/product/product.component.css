@@ -1,0 +1,38 @@
+.product {
+    display: flex;
+}
+.change-image {
+    display: inline-grid;
+    margin: 50px 50px;
+}
+.image {
+    width: 350px;
+    height: 350px;
+}
+.main-block {
+    margin: 50px 50px;
+    width: 550px;
+    height: 350px;
+}
+.description {
+    margin-bottom: 30px;
+    height: 140px;
+}
+.example-full-width {
+    width: 100%;
+}
+.product-title {
+    font-weight: 700;
+    padding: 0;
+    margin-bottom: 30px;
+}
+.price {
+    color: #dd3f46;
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.save-button {
+    width: 100%;
+    margin-top: 25px;
+}

@@ -1,4 +1,22 @@
 ﻿<mat-toolbar color="primary">
-    <span class="app-title">Shop admin</span>
+    <div class="panel-left" (click)="gotoHomePage()">
+        <img class="logo" src="../assets/image/logo.png" alt="Logo">
+        <span class="app-title">Панель администратора</span>
+    </div>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<div class="home">
+    <div class="home__card">
+        <mat-nav-list class="menu">
+            <div>
+                <a mat-list-item routerLink="/home">Список товаров</a>
+                <a mat-list-item (click)="gotoNewProductPage()">Добавить товар</a>
+                <a mat-list-item routerLink="/orders">Список заказов</a>
+                <a mat-list-item routerLink="/history">История заказов</a>
+            </div>
+        </mat-nav-list>
+    </div>
+    <div class="home__content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

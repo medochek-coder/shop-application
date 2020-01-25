@@ -1,0 +1,33 @@
+.logo {
+    height: 50px;
+    width: 50px;
+    padding-right: 10px;
+}
+
+.basket {
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+.basket-info {
+    padding-right: 10px;
+}
+
+.panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-right {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.panel-left {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}

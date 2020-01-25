@@ -1,0 +1,45 @@
+.basket-home {
+    padding: 10px 10px 10px 10px;
+}
+
+.image {
+    width: 150px;
+    height: 150px;
+}
+
+
+.number {
+    -webkit-text-stroke-width: medium;
+    display: inline-flex;
+}
+
+.input-number {
+    background: #eeeeee;
+    height: 40px;
+    font-size: 1em;
+    vertical-align: top;
+    text-align: center;
+    width: 100%;
+    margin-top: -20px;
+}
+
+.price {
+    font-size: 1.2em;
+    font-weight: 700;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.table {
+    margin-inside: 40px;
+}
+
+.td {
+    vertical-align: middle;
+}
+
+.button {
+    margin-block-end: 20px;
+    height: 40px;
+    width: 200px;
+}

@@ -1,4 +1,43 @@
 .home {
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+}
+
+.product-list {
+    display: flex;
+    padding: 10px 10px 10px 10px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    width: 350px;
+    height: 550px;
+    background: floralwhite;
+}
+
+.product-card-wrapper {
+    padding: 10px 10px 10px 10px;
+    flex: 1 0 20%;
+}
+
+.min-image {
+    width: 350px;
+    height: 350px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+}
+
+.action-button {
+    margin: 0px 5px 5px 5px !important;
+    width: 320px;
 }
 
 @media screen and (min-width: 481px) {

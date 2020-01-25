@@ -1,0 +1,33 @@
+<div class="order">
+    <div class="page-header">
+        <h1>Введите данные для заказа</h1>
+    </div>
+    <form class="order-form">
+        <table class="order-part" cellspacing="0"><tr>
+            <td><mat-form-field class="order-part">
+                <input matInput placeholder="Имя" [(ngModel)]="order.ownerFirstName" name="firstname">
+            </mat-form-field></td>
+            <td><mat-form-field class="order-part">
+                <input matInput placeholder="Фамилия" [(ngModel)]="order.ownerLastName" name="lastname">
+            </mat-form-field></td>
+        </tr></table>
+
+        <mat-form-field class="order-part">
+            <span matPrefix>+ &nbsp;</span>
+            <input type="tel" matInput placeholder="Телефон" [(ngModel)]="order.ownerPhone" name="phone">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="order-part">
+            <input matInput placeholder="Email" [formControl]="emailFormControl" [(ngModel)]="order.ownerEmail" name="email">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <button class="button" mat-raised-button color="warn" [disabled]="!isFilledFields()" (click)="createOrder()">Заказать</button>
+    </form>
+</div>
