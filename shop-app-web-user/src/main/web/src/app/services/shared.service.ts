@@ -15,7 +15,6 @@ export class SharedService {
 
     constructor() {}
 
-
     public getServerURL() {
         return this.isProd ? (this.HOST_PROD) : (this.HOST_DEV + ':' + this.PORT_DEV);
     }

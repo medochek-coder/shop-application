@@ -1,7 +1,7 @@
 .product {
     display: flex;
 }
-.image {
+.big-image {
     width: 350px;
     height: 350px;
     margin: 50px 50px;

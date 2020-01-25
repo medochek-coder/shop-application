@@ -8,8 +8,9 @@ public interface OrderService {
     ProductOrder create(ProductOrder productOrder);
     ProductOrder getById(Long id);
     List<ProductOrder> getAll();
+    List<ProductOrder> getInProgressOrders();
     List<ProductOrder> getCompletedOrders();
-    ProductOrder complete(ProductOrder productOrder);
+    ProductOrder completeById(Long orderId);
     void delete(Long id);
 
 }

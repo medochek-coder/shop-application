@@ -5,7 +5,6 @@ export class Product {
     private _description: string;
     private _photo: string;
 
-
     constructor(data: any) {
         this._id = data.id;
         this._name = data.name;

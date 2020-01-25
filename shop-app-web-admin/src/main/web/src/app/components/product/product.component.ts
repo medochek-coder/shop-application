@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Product} from "../../models/product";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../../services/product.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ActionPopup} from "../pupup/action.popup";
 
 @Component({
     selector: 'product',
@@ -17,7 +19,8 @@ export class ProductComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private routing: Router,
-                private productService: ProductService) {
+                private productService: ProductService,
+                private dialog: MatDialog) {
     }
 
     ngOnInit() {
@@ -46,6 +49,14 @@ export class ProductComponent implements OnInit {
 
     createProduct() {
         this.productService.createProduct(this.selectedProduct).subscribe(date => {
+            this.openActionPopup();
+        });
+    }
+
+    public openActionPopup() {
+        let info = this.isCreate ? 'Продукт создан' : 'Продукт обвновлен';
+        const dialogRef = this.dialog.open(ActionPopup, {data : {title: 'Готово', info: info}});
+        dialogRef.afterClosed().subscribe(result => {
             this.routing.navigate(['home']);
         });
     }

@@ -30,6 +30,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<ProductOrder> getAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public List<ProductOrder> getInProgressOrders() {
         return repository.findByStatus("IN_PROGRESS");
     }
 
@@ -39,7 +44,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public ProductOrder complete(ProductOrder productOrder) {
+    public ProductOrder completeById(Long orderId) {
+        ProductOrder productOrder = getById(orderId);
         productOrder.setStatus("COMPLETE");
         return repository.save(productOrder);
     }

@@ -1,7 +1,10 @@
 ﻿<div class="home">
     <div class="top">
     </div>
-    <div class="product-list">
+    <div *ngIf="products.length === 0">
+        В системе нет товаров
+    </div>
+    <div class="product-list" *ngIf="products.length !== 0">
         <div class="product-card-wrapper" *ngFor="let product of products">
             <mat-card class="product-card">
                 <mat-card-header>
@@ -9,10 +12,10 @@
                     <mat-card-title>{{product.name}}</mat-card-title>
                     <mat-card-subtitle>{{product.price}} &euro;</mat-card-subtitle>
                 </mat-card-header>
-                <img class="image" mat-card-image src="{{product.photo}}" alt="Фото ватрушки">
+                <img class="min-image" mat-card-image src="{{product.photo}}" alt="Фото товара">
                 <mat-card-actions class="actions">
-                    <button mat-button (click)="updateProduct(product.id)">Изменить</button>
-                    <button mat-button (click)="deleteProduct(product.id)">Удалить</button>
+                    <button class="action-button" mat-raised-button color="primary" (click)="updateProduct(product.id)">Изменить</button>
+                    <button class="action-button" mat-raised-button color="warn" (click)="deleteProduct(product.id)">Удалить</button>
                 </mat-card-actions>
             </mat-card>
         </div>

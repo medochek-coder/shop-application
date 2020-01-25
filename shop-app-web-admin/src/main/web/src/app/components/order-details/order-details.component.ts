@@ -3,6 +3,7 @@ import {ProductOrder} from "../../models/productOrder";
 import {ActivatedRoute} from "@angular/router";
 import {ProductOrderService} from "../../services/productOrder.service";
 import {Basket} from "../../models/basket";
+import {Product} from "../../models/product";
 
 @Component({
     selector: 'order-details',
@@ -23,26 +24,32 @@ export class OrderDetailsComponent implements OnInit {
 
     ngOnInit() {
         let orderId = Number(this.route.snapshot.paramMap.get('id'));
-        this.orders = this.productOrderService.getOrders();
-        this.orders.forEach(order => {
-            if (order.id == orderId) {
-                this.selectedOrder = order;
-            }
+        this.productOrderService.getOrderById(orderId).subscribe(data => {
+            this.selectedOrder = new ProductOrder(data);
+            console.log(this.selectedOrder);
         });
     }
     calculateTotalSum() {
         let totalSum = 0;
-        this.selectedOrder.basket.basketRows.forEach(basketRow => {
+        this.selectedOrder.basket.basketRows.basketRowList.forEach(basketRow => {
             totalSum += basketRow.product.price * basketRow.count;
         });
         return totalSum;
     }
 
-    isInProgress(order: ProductOrder) {
-        if (order.status == "IN_PROGRESS") {
+    isInProgress() {
+        if (this.selectedOrder.status && this.selectedOrder.status == "IN_PROGRESS") {
             return true;
         } else {
             return false;
         }
+    }
+
+    complete() {
+        this.productOrderService.completeOrderById(this.selectedOrder.id).subscribe(data => {
+            this.selectedOrder = new ProductOrder(data);
+            console.log(this.selectedOrder);
+            this.ngOnInit();
+        });
     }
 }

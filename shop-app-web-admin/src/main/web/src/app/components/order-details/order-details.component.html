@@ -3,7 +3,7 @@
         <h1>
             Заказ № {{selectedOrder.id}}
         </h1>
-        <button *ngIf="isInProgress(selectedOrder)" mat-flat-button color="warn" class="button"><h4>Выполнено</h4></button>
+        <button *ngIf="isInProgress()" mat-flat-button color="warn" class="button" (click)="complete()"><h4>Выполнить</h4></button>
         <table matSort class="table">
             <tr>
                 <th mat-sort-header="status">Статус</th>
@@ -16,9 +16,9 @@
             </tr>
 
             <tr>
-                <td *ngIf="isInProgress(selectedOrder)">Не выполнен</td>
-                <td *ngIf="!isInProgress(selectedOrder)">Выполнен</td>
-                <td class="td">{{selectedOrder.ownerFirstName}}</td>
+                <td class="td" *ngIf="isInProgress()">Не выполнен</td>
+                <td class="td" *ngIf="!isInProgress()">Выполнен</td>
+                <td class="td" >{{selectedOrder.ownerFirstName}}</td>
                 <td class="td">{{selectedOrder.ownerLastName}}</td>
                 <td class="td">{{selectedOrder.ownerPhone}}</td>
                 <td class="td">{{selectedOrder.ownerEmail}}</td>
@@ -36,7 +36,7 @@
             <th mat-sort-header="price">Стоимость</th>
         </tr>
 
-        <tr *ngFor="let basketRow of selectedOrder.basket.basketRows">
+        <tr *ngFor="let basketRow of selectedOrder.basket.basketRows.basketRowList">
             <td class="td"><img class="image" mat-card-image src="{{basketRow.product.photo}}" alt="Фото"></td>
             <td class="td">{{basketRow.product.name}}</td>
             <td class="price">{{basketRow.product.price}} &euro;</td>

@@ -1,8 +1,8 @@
 import {BasketRow} from "./basketRow";
 
+
 export class BasketRowList {
     private _basketRowList: BasketRow[] = [];
-
 
     constructor(data: any) {
         if (data.basketRows) {

@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import {Component, OnInit} from '@angular/core';
 import {Product} from "../../models/product";
 import {ProductService} from "../../services/product.service";
 import {Router} from "@angular/router";
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
     public deleteProduct(productId: number) {
         this.productService.deleteProductById(productId).subscribe(date => {
             this.router.navigate(['home']);
-            this.ngOnInit();
+            this.initProducts();
         });
     }
 }

@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import {Component, OnInit} from '@angular/core';
 import {Product} from "../../models/product";
 import {ProductService} from "../../services/product.service";
 import {Router} from "@angular/router";
@@ -46,12 +46,9 @@ export class HomeComponent implements OnInit {
     private initBasket() {
         if (this.shared.getBasketIdFromStorage() === null) {
             this.basketService.createBasket().subscribe( data => {
-                let basket = new Basket(data);
-                this.basket = basket;
+                this.basket = new Basket(data);
                 this.shared.setBasketIdToStorage(this.basket.id);
             })
-            // вот тут вызываем метод создатьКорзину и когда он срабатывает,
-            // то вызываем this.shared.setBasketIdToStorage(basketId: Number)
         }
     }
 }

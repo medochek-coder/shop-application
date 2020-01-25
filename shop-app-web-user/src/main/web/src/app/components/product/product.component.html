@@ -1,5 +1,5 @@
 <div class="product">
-    <img class="image" mat-card-image src="{{selectedProduct.photo}}" alt="Фото">
+    <img class="big-image" mat-card-image src="{{selectedProduct.photo}}" alt="Фото">
     <div class="main-block">
         <h1 class="js-product-title">{{selectedProduct.name}}</h1>
         <div class="product-title on-page"></div>
@@ -10,11 +10,11 @@
         </div>
         <div class="price">{{selectedProduct.price}} &euro;</div>
         <div class="number">
-            <button mat-raised-button class="minus">-</button>
+            <button mat-raised-button class="minus" (click)="countMinus()">-</button>
             <mat-form-field>
-                <input matInput type="text" min="1" max="1000" class="input-number" [(ngModel)]="count">
+                <input matInput type="text" pattern="^[0-9]" title='Only Number' min="1" max="1000" class="input-number" [(ngModel)]="count">
             </mat-form-field>
-            <button mat-raised-button class="plus">+</button>
+            <button mat-raised-button class="plus" (click)="countPlus()">+</button>
         </div>
         <button mat-raised-button class="buy" (click)="addProductToBasket()">В корзину</button>
     </div>

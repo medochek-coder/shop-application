@@ -1,6 +1,6 @@
 <div class="product">
     <div class="change-image">
-        <img class="image" mat-card-image src="{{selectedProduct.photo}}" alt="Фото">
+        <img class="image" mat-card-image src="{{selectedProduct.photo}}" alt="Фото" *ngIf="selectedProduct.photo.trim() !== ''">
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Фото продукта, url" [(ngModel)]="selectedProduct.photo">
         </mat-form-field>

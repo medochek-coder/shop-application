@@ -1,12 +1,12 @@
-import {BasketRow} from "./basketRow";
+import {BasketRowList} from "./basketRowList";
 
 export class Basket {
     private _id: number;
-    private _basketRows: BasketRow[];
+    private _basketRows: BasketRowList;
 
-    constructor(id: number) {
-        this._id = id;
-        this.basketRows = [];
+    constructor(data: any) {
+        this._id = data.id ? data.id : null;
+        this._basketRows = data.basketRowList  ? new BasketRowList(data.basketRowList) : new BasketRowList({});
     }
 
     get id(): number {
@@ -17,11 +17,18 @@ export class Basket {
         this._id = value;
     }
 
-    get basketRows(): BasketRow[] {
+    get basketRows(): BasketRowList {
         return this._basketRows;
     }
 
-    set basketRows(value: BasketRow[]) {
+    set basketRows(value: BasketRowList) {
         this._basketRows = value;
+    }
+
+    toObject() {
+        return {
+            id: this._id,
+            basketRowList: this._basketRows.toObject()
+        }
     }
 }

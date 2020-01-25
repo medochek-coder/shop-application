@@ -11,7 +11,6 @@ import { MainUiModule } from './modules/main-ui/main-ui.module';
 
 /*Services*/
 import { ProductService } from "./services/product.service";
-import { BasketService } from "./services/basket.service";
 import { ProductOrderService } from "./services/productOrder.service";
 import { SharedService } from "./services/shared.service";
 
@@ -23,6 +22,7 @@ import {ProductComponent} from "./components/product/product.component";
 import {HistoryComponent} from "./components/history/history.component";
 
 /*Popups*/
+import { ActionPopup} from "./components/pupup/action.popup";
 
 @NgModule({
     imports: [
@@ -39,9 +39,11 @@ import {HistoryComponent} from "./components/history/history.component";
         ProductComponent,
         OrdersComponent,
         OrderDetailsComponent,
-        HistoryComponent
+        HistoryComponent,
+        ActionPopup
     ],
     entryComponents: [
+        ActionPopup
     ],
     providers: [
         HomeComponent,
@@ -49,8 +51,8 @@ import {HistoryComponent} from "./components/history/history.component";
         OrdersComponent,
         OrderDetailsComponent,
         HistoryComponent,
+        ActionPopup,
         ProductService,
-        BasketService,
         ProductOrderService,
         SharedService
     ],

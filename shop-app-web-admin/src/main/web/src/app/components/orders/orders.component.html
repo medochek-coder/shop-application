@@ -1,4 +1,7 @@
 <div class="orders">
+    <div *ngIf="orders.length === 0">
+        Список заказов пуст
+    </div>
     <div class="order-list">
         <div class="order-card-wrapper" *ngFor="let order of orders">
             <mat-card class="order-card">
@@ -13,7 +16,7 @@
                     <mat-card-subtitle>Дата: {{order.date}}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-actions class="actions">
-                    <button mat-button (click)="openOrderDetails(order.id)">Подробнее</button>
+                    <button mat-raised-button color="primary" (click)="openOrderDetails(order.id)">Подробнее</button>
                 </mat-card-actions>
             </mat-card>
         </div>

@@ -1,4 +1,3 @@
-import {BasketRow} from "./basketRow";
 import {BasketRowList} from "./basketRowList";
 
 export class Basket {
@@ -18,12 +17,18 @@ export class Basket {
         this._id = value;
     }
 
-
     get basketRows(): BasketRowList {
         return this._basketRows;
     }
 
     set basketRows(value: BasketRowList) {
         this._basketRows = value;
+    }
+
+    toObject() {
+        return {
+            id: this._id,
+            basketRowList: this._basketRows.toObject()
+        }
     }
 }

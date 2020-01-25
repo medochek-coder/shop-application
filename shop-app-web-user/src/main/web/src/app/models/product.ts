@@ -5,7 +5,6 @@ export class Product {
     private _description: string;
     private _photo: string;
 
-
     constructor(data: any) {
         this._id = data.id;
         this._name = data.name;
@@ -52,5 +51,16 @@ export class Product {
 
     set photo(value: string) {
         this._photo = value;
+    }
+
+    public toObject() {
+        return {
+            id: this._id,
+            name: this._name,
+            description: this._description,
+            image: this._photo,
+            price: this._price,
+            priceSale: null
+        }
     }
 }

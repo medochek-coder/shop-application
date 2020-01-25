@@ -22,6 +22,7 @@ import { BasketComponent } from './components/basket/basket.component';
 import { OrderComponent } from './components/order/order.component';
 
 /*Popups*/
+import {ActionPopup} from "./components/pupup/action.popup";
 
 @NgModule({
     imports: [
@@ -37,15 +38,18 @@ import { OrderComponent } from './components/order/order.component';
         HomeComponent,
         ProductComponent,
         BasketComponent,
-        OrderComponent
+        OrderComponent,
+        ActionPopup
     ],
     entryComponents: [
+        ActionPopup
     ],
     providers: [
         HomeComponent,
         ProductComponent,
         BasketComponent,
         OrderComponent,
+        ActionPopup,
         ProductService,
         BasketService,
         ProductOrderService,

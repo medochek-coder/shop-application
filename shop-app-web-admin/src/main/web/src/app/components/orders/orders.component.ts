@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductOrderService} from "../../services/productOrder.service";
 import {Router} from "@angular/router";
 import {ProductOrder} from "../../models/productOrder";
+import {ProductOrderList} from "../../models/productOrderList";
 
 @Component({
     selector: 'orders',
@@ -23,11 +24,10 @@ export class OrdersComponent implements OnInit {
     ngOnInit() {
     }
     private initOrders() {
-        for (let order of this.productOrderService.getOrders()) {
-            if(order.status == "IN_PROGRESS") {
-                this.orders.push(order);
-            }
-        }
+        this.productOrderService.getInProgressOrders().subscribe(data => {
+            let orders = new ProductOrderList(data);
+            this.orders = orders.productOrderList;
+        });
     }
 
     public openOrderDetails(orderId: number) {
@@ -36,18 +36,13 @@ export class OrdersComponent implements OnInit {
 
     calculateTotalSum(order: ProductOrder) {
         let totalSum = 0;
-        order.basket.basketRows.forEach(basketRow => {
+        order.basket.basketRows.basketRowList.forEach(basketRow => {
             totalSum += basketRow.product.price * basketRow.count;
         });
         return totalSum;
     }
 
     isInProgress(order: ProductOrder) {
-        if (order.status == "IN_PROGRESS") {
-            return true;
-        } else {
-            return false;
-        }
+        return order.status == "IN_PROGRESS";
     }
-
 }

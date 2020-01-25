@@ -13,14 +13,7 @@ public class ProductListDTO {
     public ProductListDTO(List<Product> products) {
         this.products = products.stream()
                 .map(product -> {
-                    ProductDTO productDTO = new ProductDTO();
-                    productDTO.setId(product.getId());
-                    productDTO.setName(product.getName());
-                    productDTO.setDescription(product.getDescription());
-                    productDTO.setImage(product.getImage());
-                    productDTO.setPrice(product.getPrice());
-                    productDTO.setPriceSale(product.getPriceSale());
-
+                    ProductDTO productDTO = new ProductDTO(product);
                     return productDTO;
         }).collect(Collectors.toList());
     }

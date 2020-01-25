@@ -1,4 +1,3 @@
-import {Basket} from "./basket";
 import {Product} from "./product";
 
 export class BasketRow {
@@ -34,5 +33,13 @@ export class BasketRow {
 
     set product(value: Product) {
         this._product = value;
+    }
+
+    public toObject() {
+        return {
+            id: this._id,
+            count: this._count,
+            product: this._product.toObject()
+        }
     }
 }

@@ -238,7 +238,7 @@ public class ShellService {
     public String completeOrder(@ShellOption Long id) {
         ProductOrder productOrder = orderService.getById(id);
         if (productOrder != null) {
-            return "Order completed: " + printService.print(orderService.complete(productOrder));
+            return "Order completed: " + printService.print(orderService.completeById(id));
         }
         return "Not found";
     }

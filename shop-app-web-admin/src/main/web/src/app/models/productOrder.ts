@@ -10,16 +10,20 @@ export class ProductOrder {
     private _date: Date;
     private _basket: Basket;
 
+    constructor(data: any) {
+        this._id = data.id ? data.id : null;
+        this._ownerFirstName = data.ownerFirstName ? data.ownerFirstName : "";
+        this._ownerLastName = data.ownerLastName ? data.ownerLastName : "";
+        this._ownerPhone = data.ownerPhone ? data.ownerPhone : "";
+        this._ownerEmail = data.ownerEmail ? data.ownerEmail : "";
+        this._status = data.status ? data.status : "IN_PROGRESS";
+        this._date = data.date ? data.date : null;
+        if (data.basket) {
+            this._basket = new Basket(data.basket)
+        } else {
+            this._basket = new Basket({});
+        }
 
-    constructor(id: number, ownerFirstName: string, ownerLastName: string, ownerPhone: string, ownerEmail: string, status: string, date: Date, basket: Basket) {
-        this._id = id;
-        this._ownerFirstName = ownerFirstName;
-        this._ownerLastName = ownerLastName;
-        this._ownerPhone = ownerPhone;
-        this._ownerEmail = ownerEmail;
-        this._status = status;
-        this._date = date;
-        this._basket = basket;
     }
 
     get id(): number {
@@ -84,5 +88,18 @@ export class ProductOrder {
 
     set basket(value: Basket) {
         this._basket = value;
+    }
+
+    public toObject() {
+        return {
+            id: this._id,
+            ownerFirstName: this._ownerFirstName,
+            ownerLastName: this._ownerLastName,
+            ownerPhone: this._ownerPhone,
+            ownerEmail: this._ownerEmail,
+            status: this._status,
+            date: this._date,
+            basket: this._basket.toObject()
+        }
     }
 }

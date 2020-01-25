@@ -16,7 +16,8 @@
 
 .product-card {
     width: 350px;
-    height: 550px;
+    height: 505px;
+    background: floralwhite;
 }
 
 .product-card-wrapper {
@@ -24,10 +25,9 @@
     flex: 1 0 20%;
 }
 
-.image {
+.min-image {
     width: 350px;
     height: 350px;
-    /*border: 1px solid gray;*/
 }
 
 .actions {

@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class="modal-window-text-item">{{title}}</h1>
+<div mat-dialog-content>
+    <p class="modal-window-text-item">{{info}}</p>
+    <div class="action-buttons">
+        <button class="action-button" mat-raised-button color="primary" [mat-dialog-close]="null" cdkFocusInitial>Продолжить покупки</button>
+        <button *ngIf="isProduct" class="action-button" mat-raised-button color="accent" [mat-dialog-close]="isGoBasket">В корзину</button>
+    </div>
+</div>
