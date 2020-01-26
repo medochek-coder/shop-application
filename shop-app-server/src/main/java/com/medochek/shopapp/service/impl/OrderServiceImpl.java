@@ -1,6 +1,5 @@
 package com.medochek.shopapp.service.impl;
 
-import com.medochek.shopapp.domain.Basket;
 import com.medochek.shopapp.domain.ProductOrder;
 import com.medochek.shopapp.repository.OrderRepository;
 import com.medochek.shopapp.service.OrderService;
@@ -11,9 +10,6 @@ import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-
-    @Autowired
-    private BasketServiceImpl basketService;
 
     @Autowired
     private OrderRepository repository;
