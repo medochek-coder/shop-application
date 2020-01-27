@@ -17,7 +17,7 @@ public class BasketController {
     @Autowired
     private BasketService basketService;
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getBasketById(@PathVariable(value = "id") Long basketId) {
         Basket basket  = basketService.getById(basketId);
         if (basket != null) {
@@ -45,13 +45,13 @@ public class BasketController {
         return getBasketById(basketId);
     }
 
-    @RequestMapping(value = "/add/{idB}/{idP}", method = RequestMethod.POST)
+    @RequestMapping(value = "/add/{idB}/product/{idP}", method = RequestMethod.POST)
     public ResponseEntity<?> addProductById(@PathVariable(value = "idB") Long basketId, @PathVariable(value = "idP") Long productId) {
         basketService.addProductById(basketId, productId);
         return getBasketById(basketId);
     }
 
-    @RequestMapping(value = "/add/{idB}/{idP}/{c}", method = RequestMethod.POST)
+    @RequestMapping(value = "/add/{idB}/product/{idP}/count/{c}", method = RequestMethod.POST)
     public ResponseEntity<?> addProductById(@PathVariable(value = "idB") Long basketId,
                                             @PathVariable(value = "idP") Long productId,
                                             @PathVariable(value = "c") Integer count) {
@@ -59,7 +59,7 @@ public class BasketController {
         return getBasketById(basketId);
     }
 
-    @RequestMapping(value = "/change/{idB}/{idP}/{c}", method = RequestMethod.POST)
+    @RequestMapping(value = "/change/{idB}/product/{idP}/count/{c}", method = RequestMethod.POST)
     public ResponseEntity<?> changeProductById(@PathVariable(value = "idB") Long basketId,
                                             @PathVariable(value = "idP") Long productId,
                                             @PathVariable(value = "c") Integer count) {
@@ -67,7 +67,7 @@ public class BasketController {
         return getBasketById(basketId);
     }
 
-    @RequestMapping(value = "/inc/{idB}/{idP}/{b}", method = RequestMethod.POST)
+    @RequestMapping(value = "/inc/{idB}/product/{idP}/{b}", method = RequestMethod.POST)
     public ResponseEntity<?> incOrDecCountProductById(@PathVariable(value = "idB") Long basketId,
                                                @PathVariable(value = "idP") Long productId,
                                                @PathVariable(value = "b") Boolean increase) {
@@ -75,7 +75,7 @@ public class BasketController {
         return getBasketById(basketId);
     }
 
-    @RequestMapping(value = "/delete/{idB}/{idP}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{idB}/product/{idP}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteProductById(@PathVariable(value = "idB") Long basketId, @PathVariable(value = "idP") Long productId) {
         basketService.deleteProductById(basketId, productId);
         return getBasketById(basketId);

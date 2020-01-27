@@ -40,6 +40,7 @@ export class ProductComponent implements OnInit {
     public addProductToBasket() {
         let basketId = this.shared.getBasketIdFromStorage();
         this.basketService.addProductById(basketId, this.selectedProduct.id, this.count).subscribe(data => {
+            this.shared.updateCurrentBasket();
             this.openActionPopup();
         })
     }
