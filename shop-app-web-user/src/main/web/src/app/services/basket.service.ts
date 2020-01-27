@@ -15,15 +15,17 @@ export class BasketService {
     private readonly CREATE_BASKET: string;
     private readonly ADD_PRODUCT_BY_ID: string;
     private readonly DELETE_BASKET_BY_ID: string;
+    private readonly DELETE_PRODUCT_FROM_BASKET_BY_ID: string;
 
 
     constructor(private shared: SharedService,
                 private http: HttpClient) {
         this.SERVER_URL = this.shared.getServerURL();
         this.CREATE_BASKET = this.SERVER_URL + '/api/basket/create';
-        this.GET_BASKET_BY_ID = this.SERVER_URL + '/api/basket/get/{id}';
-        this.ADD_PRODUCT_BY_ID = this.SERVER_URL + '/api/basket/add/{idB}/{idP}/{c}';
+        this.GET_BASKET_BY_ID = this.SERVER_URL + '/api/basket/{id}';
+        this.ADD_PRODUCT_BY_ID = this.SERVER_URL + '/api/basket/add/{idB}/product/{idP}/count/{c}';
         this.DELETE_BASKET_BY_ID = this.SERVER_URL + '/api/basket/delete/{id}';
+        this.DELETE_PRODUCT_FROM_BASKET_BY_ID = this.SERVER_URL + '/api/basket/delete/{idB}/product/{idP}';
     }
 
     public getBasketById(basketId: Number) {
@@ -49,5 +51,12 @@ export class BasketService {
         const url = this.ADD_PRODUCT_BY_ID.replace(idB, basketId.toString()).replace(idP, productId.toString())
             .replace(c, count.toString());
         return this.http.post<Observable<Object>>(url, null);
+    }
+
+    public deleteProductById(basketId: Number, productId: Number) {
+        const idB = /{idB}/gi;
+        const idP = /{idP}/gi;
+        const url = this.DELETE_PRODUCT_FROM_BASKET_BY_ID.replace(idB, basketId.toString()).replace(idP, productId.toString());
+        return this.http.delete<Observable<Object>>(url);
     }
 }

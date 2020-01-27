@@ -70,7 +70,7 @@ public class BasketServiceImpl implements BasketService {
                 basketRowRepository.save(basketRow);
             }
             else {
-                changeCountProductById(idBasket, idProduct, count);
+                changeCountProductById(idBasket, idProduct, count + basketRows.getCount());
             }
         }
     }

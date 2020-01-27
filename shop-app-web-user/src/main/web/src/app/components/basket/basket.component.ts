@@ -48,7 +48,7 @@ export class BasketComponent implements OnInit {
     }
 
     countMinus(basketRow: BasketRow, countNow: Number) {
-        this.basketService.addProductById(this.basket.id, basketRow.product.id, (countNow.valueOf() - 1)).subscribe(data => {
+        this.basketService.addProductById(this.basket.id, basketRow.product.id, -1).subscribe(data => {
             if (countNow === 0 || countNow.valueOf() - 1 === 0) {
                 let index = this.basket.basketRows.basketRowList.findIndex(bRow => {
                     return bRow.id === basketRow.id;
@@ -57,16 +57,24 @@ export class BasketComponent implements OnInit {
             } else {
                 basketRow.count = countNow.valueOf() - 1;
             }
+            this.shared.updateCurrentBasket();
         })
     }
 
     countPlus(basketRow: BasketRow, countNow: Number) {
-        this.basketService.addProductById(this.basket.id, basketRow.product.id, (countNow.valueOf() + 1)).subscribe(data => {
+        this.basketService.addProductById(this.basket.id, basketRow.product.id, 1).subscribe(data => {
             basketRow.count = countNow.valueOf() + 1;
+            this.shared.updateCurrentBasket();
         })
     }
 
     countZero(basketRow: BasketRow) {
-        this.countMinus(basketRow, 0);
+        this.basketService.deleteProductById(this.basket.id, basketRow.product.id).subscribe(data => {
+            let index = this.basket.basketRows.basketRowList.findIndex(bRow => {
+                return bRow.id === basketRow.id;
+            });
+            if (index !== -1) this.basket.basketRows.basketRowList.splice(index, 1);
+            this.shared.updateCurrentBasket();
+        });
     }
 }

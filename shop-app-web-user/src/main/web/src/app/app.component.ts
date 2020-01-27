@@ -1,5 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import {Router} from "@angular/router";
+import {Basket} from "./models/basket";
+import {SharedService} from "./services/shared.service";
 
 @Component({
     selector: 'app-root',
@@ -10,14 +12,24 @@ import {Router} from "@angular/router";
 })
 
 export class AppComponent {
-    constructor(private router: Router) {
+
+    constructor(private router: Router,
+                private shared: SharedService) {
     }
 
-    gotoBasketPage() {
+    public gotoBasketPage() {
         this.router.navigate(['basket']);
     }
 
-    gotoHomePage() {
+    public gotoHomePage() {
         this.router.navigate(['home']);
+    }
+
+    public getProductCount() {
+        return this.shared.getCurrentBasketProductCount();
+    }
+
+    public getTotalPrice() {
+        return this.shared.getCurrentBasketTotalPrice();
     }
 }

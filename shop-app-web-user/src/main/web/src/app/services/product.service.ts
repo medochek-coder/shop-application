@@ -15,7 +15,7 @@ export class ProductService {
     constructor(private shared: SharedService,
                 private http: HttpClient) {
         this.SERVER_URL = this.shared.getServerURL();
-        this.GET_PRODUCT_BY_ID = this.SERVER_URL + '/api/product/get/{id}';
+        this.GET_PRODUCT_BY_ID = this.SERVER_URL + '/api/product/{id}';
         this.GET_ALL_PRODUCTS = this.SERVER_URL + '/api/product/get/all';
     }
 

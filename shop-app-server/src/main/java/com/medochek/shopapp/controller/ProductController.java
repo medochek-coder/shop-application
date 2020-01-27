@@ -20,7 +20,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getProductById(@PathVariable(value = "id") Long productId) {
         Product product = productService.getById(productId);
         if (product != null) {
@@ -45,7 +45,7 @@ public class ProductController {
 
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteProductById(@PathVariable(value = "id") Long productId) {
         productService.deleteById(productId);
         return new ResponseEntity<>(null, HttpStatus.OK);

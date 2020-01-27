@@ -48,6 +48,7 @@ export class OrderComponent implements OnInit {
             this.order.date = new Date();
             this.order.status = "IN_PROGRESS";
             this.productOrderService.createOrder(this.order).subscribe(date => {
+                this.order = new ProductOrder(date);
                 this.basketService.createBasket().subscribe( data => {
                     this.basket = new Basket(data);
                     this.shared.setBasketIdToStorage(this.basket.id);
@@ -58,7 +59,7 @@ export class OrderComponent implements OnInit {
     }
 
     public openActionPopup() {
-        const dialogRef = this.dialog.open(ActionPopup, {data : {title: 'Готово', info: 'Заказ создан и отправлен администратору'}});
+        const dialogRef = this.dialog.open(ActionPopup, {data : {title: 'Готово', info: 'Номер вашего заказа: ' + this.order.id}});
         dialogRef.afterClosed().subscribe(result => {
             this.router.navigate(['home']);
         });
