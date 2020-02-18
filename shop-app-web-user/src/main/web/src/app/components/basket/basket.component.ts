@@ -77,4 +77,6 @@ export class BasketComponent implements OnInit {
             this.shared.updateCurrentBasket();
         });
     }
+
+    public isMobile = () => screen.width < 481;
 }

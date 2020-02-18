@@ -1,17 +1,21 @@
 .logo {
     height: 50px;
     width: 50px;
-    padding-right: 10px;
+    padding-right: 0px;
 }
 
 .basket {
     height: 50px;
     width: 50px;
-    margin-right: 10px;
+    margin-right: 0px;
 }
 
 .basket-info {
-    padding-right: 10px;
+    display: none;
+}
+
+.app-title {
+    display: none;
 }
 
 .panel {
@@ -30,4 +34,45 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+}
+
+@media screen and (min-width: 481px) {
+    .logo {
+        height: 50px;
+        width: 50px;
+        padding-right: 10px;
+    }
+
+    .basket {
+        height: 50px;
+        width: 50px;
+        margin-right: 10px;
+    }
+
+    .basket-info {
+        display: flex;
+        padding-right: 10px;
+    }
+
+    .app-title {
+        display: flex;
+    }
+
+    .panel {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .panel-right {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .panel-left {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
 }
