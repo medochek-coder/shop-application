@@ -5,7 +5,6 @@ import com.medochek.shopapp.repository.ProductRepository;
 import com.medochek.shopapp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,6 +26,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public List<Product> getAllSale() {
+        return repository.findByPriceSaleIsNotNull();
+    }
+
+    @Override
+    public List<Product> getAllNoSale() {
+        return repository.findByPriceSaleIsNull();
     }
 
     @Override

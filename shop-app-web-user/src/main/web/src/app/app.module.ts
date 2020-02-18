@@ -12,6 +12,8 @@ import { MainUiModule } from './modules/main-ui/main-ui.module';
 /*Services*/
 import { ProductService } from "./services/product.service";
 import { BasketService } from "./services/basket.service";
+import {ProductOrderService} from "./services/productOrder.service";
+import {SharedService} from "./services/shared.service";
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
@@ -20,6 +22,7 @@ import { BasketComponent } from './components/basket/basket.component';
 import { OrderComponent } from './components/order/order.component';
 
 /*Popups*/
+import {ActionPopup} from "./components/pupup/action.popup";
 
 @NgModule({
     imports: [
@@ -35,17 +38,22 @@ import { OrderComponent } from './components/order/order.component';
         HomeComponent,
         ProductComponent,
         BasketComponent,
-        OrderComponent
+        OrderComponent,
+        ActionPopup
     ],
     entryComponents: [
+        ActionPopup
     ],
     providers: [
         HomeComponent,
         ProductComponent,
         BasketComponent,
         OrderComponent,
+        ActionPopup,
         ProductService,
-        BasketService
+        BasketService,
+        ProductOrderService,
+        SharedService
     ],
     bootstrap: [AppComponent]
 })

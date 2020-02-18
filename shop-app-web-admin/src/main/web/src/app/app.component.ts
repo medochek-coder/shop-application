@@ -1,4 +1,5 @@
 ﻿import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-root',
@@ -9,10 +10,18 @@
 })
 
 export class AppComponent {
-    constructor() {
+    constructor(private router: Router) {
     }
 
     gotoHomePage() {
 
+    }
+
+    public isMobile = () => screen.width < 481;
+
+    gotoNewProductPage() {
+        this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['product/new']);
+        });
     }
 }

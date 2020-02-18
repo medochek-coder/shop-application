@@ -1,15 +1,26 @@
 ﻿<mat-toolbar color="primary">
     <div class="panel-left" (click)="gotoHomePage()">
-        <img class="logo" src="../assets/image/logo.png" alt="Logo">
-        <span class="app-title">Панель администратора</span>
+        <div class="left">
+            <img class="logo" src="../assets/image/logo.png" alt="Logo">
+            <span class="app-title">Панель администратора</span>
+        </div>
+        <div class="right" *ngIf="isMobile()">
+            <button mat-button [matMenuTriggerFor]="menu">Меню</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/home">Список товаров</button>
+                <button mat-menu-item (click)="gotoNewProductPage()">Добавить товар</button>
+                <button mat-menu-item routerLink="/orders">Список заказов</button>
+                <button mat-menu-item routerLink="/history">История заказов</button>
+            </mat-menu>
+        </div>
     </div>
 </mat-toolbar>
 <div class="home">
-    <div class="home__card">
+    <div class="home__card" *ngIf="!isMobile()">
         <mat-nav-list class="menu">
             <div>
                 <a mat-list-item routerLink="/home">Список товаров</a>
-                <a mat-list-item routerLink="/product/new">Добавить товар</a>
+                <a mat-list-item (click)="gotoNewProductPage()">Добавить товар</a>
                 <a mat-list-item routerLink="/orders">Список заказов</a>
                 <a mat-list-item routerLink="/history">История заказов</a>
             </div>

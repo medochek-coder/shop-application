@@ -1,17 +1,14 @@
-import {Basket} from "./basket";
 import {Product} from "./product";
 
 export class BasketRow {
     private _id: number;
     private _count: number;
-    private _basket: Basket;
     private _product:Product;
 
-    constructor(id: number, count: number, basket: Basket, product: Product) {
-        this._id = id;
-        this._count = count;
-        this._basket = basket;
-        this._product = product;
+    constructor(data: any) {
+        this._id = data.id;
+        this._count = data.count;
+        this._product = new Product(data.product);
     }
 
     get id(): number {
@@ -30,19 +27,19 @@ export class BasketRow {
         this._count = value;
     }
 
-    get basket(): Basket {
-        return this._basket;
-    }
-
-    set basket(value: Basket) {
-        this._basket = value;
-    }
-
     get product(): Product {
         return this._product;
     }
 
     set product(value: Product) {
         this._product = value;
+    }
+
+    public toObject() {
+        return {
+            id: this._id,
+            count: this._count,
+            product: this._product.toObject()
+        }
     }
 }

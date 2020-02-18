@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {Product} from "../../models/product";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ProductService} from "../../services/product.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ActionPopup} from "../pupup/action.popup";
 
 @Component({
     selector: 'product',
@@ -9,16 +14,50 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ProductComponent implements OnInit {
+    public selectedProduct: Product;
+    public isCreate: boolean;
 
-    constructor() {
-        // как параметр пути мы передаем или id товара который будем редактировать,
-        // или слово new при создании нового товара, в зависимости от этого страничка
-        // будет выглядеть немного по-разному, т.е позволять нам отредактировать текущий товар
-        // или создать новый, по сути, текствоые поля для создания товара будут просто
-        // заполняться данными имеющегося товара, если мы редактируем и будут пустые если создаем
-        // новый. Вот и все различия
+    constructor(private route: ActivatedRoute,
+                private routing: Router,
+                private productService: ProductService,
+                private dialog: MatDialog) {
     }
 
     ngOnInit() {
+        if (this.route.snapshot.paramMap.get('id').includes('new')) {
+            this.isCreate = true;
+        } else {
+            this.isCreate = false;
+        }
+        if (!this.isCreate) {
+            let productId = Number(this.route.snapshot.paramMap.get('id'));
+            this.productService.getProductById(productId).subscribe(data => {
+                this.selectedProduct = new Product(data);
+            });
+
+        } else {
+            this.selectedProduct = new Product({
+                id: null,
+                name: '',
+                description: '',
+                image: '',
+                price: '',
+                priceSale: null
+            });
+        }
+    }
+
+    createProduct() {
+        this.productService.createProduct(this.selectedProduct).subscribe(date => {
+            this.openActionPopup();
+        });
+    }
+
+    public openActionPopup() {
+        let info = this.isCreate ? 'Продукт создан' : 'Продукт обвновлен';
+        const dialogRef = this.dialog.open(ActionPopup, {data : {title: 'Готово', info: info}});
+        dialogRef.afterClosed().subscribe(result => {
+            this.routing.navigate(['home']);
+        });
     }
 }

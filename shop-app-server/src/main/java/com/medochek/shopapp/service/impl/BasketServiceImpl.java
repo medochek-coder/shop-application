@@ -52,9 +52,7 @@ public class BasketServiceImpl implements BasketService {
             else {
                 changeCountProductById(idBasket, idProduct, 1);
             }
-
         }
-
     }
 
     @Override
@@ -72,11 +70,9 @@ public class BasketServiceImpl implements BasketService {
                 basketRowRepository.save(basketRow);
             }
             else {
-                changeCountProductById(idBasket, idProduct, count);
+                changeCountProductById(idBasket, idProduct, count + basketRows.getCount());
             }
-
         }
-
     }
 
     @Override
@@ -101,7 +97,6 @@ public class BasketServiceImpl implements BasketService {
                     deleteProductById(idBasket, idProduct);
                     return 0;
                 }
-
             }
         }
         return -1;
@@ -125,7 +120,6 @@ public class BasketServiceImpl implements BasketService {
                 } else {
                     return changeCountProductById(idBasket, idProduct, basketRow.getCount() - 1);
                 }
-
             }
         }
         return -1;
