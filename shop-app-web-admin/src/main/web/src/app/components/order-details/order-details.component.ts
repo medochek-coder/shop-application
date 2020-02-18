@@ -52,4 +52,6 @@ export class OrderDetailsComponent implements OnInit {
             this.ngOnInit();
         });
     }
+
+    public isMobile = () => screen.width < 481;
 }

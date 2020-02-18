@@ -17,6 +17,8 @@ export class AppComponent {
 
     }
 
+    public isMobile = () => screen.width < 481;
+
     gotoNewProductPage() {
         this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
             this.router.navigate(['product/new']);
