@@ -11,11 +11,11 @@
 }
 
 .basket-info {
-    display: none;
+
 }
 
 .app-title {
-    display: none;
+
 }
 
 .panel {
@@ -36,43 +36,29 @@
     cursor: pointer;
 }
 
-@media screen and (min-width: 481px) {
-    .logo {
-        height: 50px;
-        width: 50px;
-        padding-right: 10px;
+.desktop {
+
+}
+
+.mobile {
+    display: none;
+}
+
+@media screen and (max-device-width: 481px) {
+    .app-title {
+        display: none;
     }
 
-    .basket {
-        height: 50px;
-        width: 50px;
-        margin-right: 10px;
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
     }
 
     .basket-info {
-        display: flex;
-        padding-right: 10px;
-    }
-
-    .app-title {
-        display: flex;
-    }
-
-    .panel {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .panel-right {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .panel-left {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
+        padding-right: 5px;
+        margin: 0px 0px 0px 0px;
     }
 }

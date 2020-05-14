@@ -42,7 +42,7 @@ export class ProductComponent implements OnInit {
                 description: '',
                 image: '',
                 price: '',
-                priceSale: null
+                priceSale: ''
             });
         }
     }

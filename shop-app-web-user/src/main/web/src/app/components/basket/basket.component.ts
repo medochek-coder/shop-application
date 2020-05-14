@@ -4,6 +4,7 @@ import {BasketService} from "../../services/basket.service";
 import {Basket} from "../../models/basket";
 import {SharedService} from "../../services/shared.service";
 import {BasketRow} from "../../models/basketRow";
+import {Product} from "../../models/product";
 
 
 @Component({
@@ -42,7 +43,12 @@ export class BasketComponent implements OnInit {
     calculateTotalSum() {
         let totalSum = 0;
         this.basket.basketRows.basketRowList.forEach(basketRow => {
-            totalSum += basketRow.product.price * basketRow.count;
+            if(this.isSale(basketRow.product)){
+                totalSum += basketRow.product.priceSale * basketRow.count;
+            }
+            else {
+                totalSum += basketRow.product.price * basketRow.count;
+            }
         });
         return totalSum;
     }
@@ -77,6 +83,8 @@ export class BasketComponent implements OnInit {
             this.shared.updateCurrentBasket();
         });
     }
-
+    isSale( product: Product) {
+        return product.priceSale !== null;
+    }
     public isMobile = () => screen.width < 481;
 }

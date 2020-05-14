@@ -4,6 +4,7 @@ export class Product {
     private _price: number;
     private _description: string;
     private _photo: string;
+    private _priceSale: number;
 
     constructor(data: any) {
         this._id = data.id;
@@ -11,6 +12,15 @@ export class Product {
         this._price = data.price;
         this._description = data.description;
         this._photo = data.image;
+        this._priceSale = data.priceSale;
+    }
+
+    get priceSale(): number {
+        return this._priceSale;
+    }
+
+    set priceSale(value: number) {
+        this._priceSale = value;
     }
 
     get id(): number {
@@ -60,7 +70,7 @@ export class Product {
             description: this._description,
             image: this._photo,
             price: this._price,
-            priceSale: null
+            priceSale: this._priceSale
         }
     }
 }

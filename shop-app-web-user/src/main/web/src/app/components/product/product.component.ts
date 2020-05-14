@@ -67,4 +67,8 @@ export class ProductComponent implements OnInit {
             }
         });
     }
+
+    isSale( product: Product) {
+        return product.priceSale !== null;
+    }
 }

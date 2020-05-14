@@ -4,7 +4,7 @@
             Заказ № {{selectedOrder.id}}
         </h1>
         <button *ngIf="isInProgress()" mat-flat-button color="warn" class="button" (click)="complete()"><h4>Выполнить</h4></button>
-        <table matSort class="table" *ngIf="!isMobile()">
+        <table matSort class="table desktop">
             <tr>
                 <th mat-sort-header="status">Статус</th>
                 <th mat-sort-header="firstName">Имя</th>
@@ -28,7 +28,7 @@
         </table>
     </div>
 
-    <div *ngIf="isMobile()" class="mobile-info">
+    <div class="mobile-info">
         <div *ngIf="isInProgress()">Статус: Не выполнен</div>
         <div *ngIf="!isInProgress()">Статус: Выполнен</div>
         <div>Имя: {{selectedOrder.ownerFirstName}}</div>
@@ -39,7 +39,7 @@
         <div>Дата заказа: {{selectedOrder.date}}</div>
     </div>
 
-    <table matSort class="table" *ngIf="!isMobile()">
+    <table matSort class="table desktop">
         <tr>
             <th mat-sort-header="image"></th>
             <th mat-sort-header="name">Наименование</th>
@@ -70,7 +70,7 @@
         </tr>
     </table>
 
-    <div *ngIf="isMobile()" class="mobile-data">
+    <div class="mobile-data">
         <div *ngFor="let basketRow of selectedOrder.basket.basketRows.basketRowList">
             <div class="total">
                 <div class="td"><img class="image" mat-card-image src="{{basketRow.product.photo}}" alt="Фото"></div>
@@ -80,14 +80,14 @@
                 </div>
 
                 <div class="price">Сумма: {{basketRow.product.price*basketRow.count}} &euro;</div>
-                <div class="total">
-                    <div class="price">
-                        Итого:
-                    </div>
-                    <div class="price">
-                        {{calculateTotalSum()}} &euro;
-                    </div>
-                </div>
+            </div>
+        </div>
+        <div class="total">
+            <div class="price">
+                Итого:
+            </div>
+            <div class="price">
+                {{calculateTotalSum()}} &euro;
             </div>
         </div>
     </div>

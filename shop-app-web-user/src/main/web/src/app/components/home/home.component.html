@@ -10,7 +10,8 @@
                 <mat-card-header>
                     <div mat-card-avatar class="example-header-image"></div>
                     <mat-card-title>{{product.name}}</mat-card-title>
-                    <mat-card-subtitle>{{product.price}} &euro;</mat-card-subtitle>
+                    <mat-card-subtitle *ngIf="!isSale(product)">{{product.price}} &euro;</mat-card-subtitle>
+                    <mat-card-subtitle *ngIf="isSale(product)"><label class="new-price">{{product.priceSale}} &euro;</label><label class="old-price">{{product.price}} &euro;</label></mat-card-subtitle>
                 </mat-card-header>
                 <img class="min-image" mat-card-image src="{{product.photo}}" alt="Фото товара">
                 <mat-card-actions class="actions">

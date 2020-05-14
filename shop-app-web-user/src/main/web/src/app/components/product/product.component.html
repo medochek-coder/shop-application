@@ -8,7 +8,8 @@
             {{selectedProduct.description}}
             </p>
         </div>
-        <div class="price">{{selectedProduct.price}} &euro;</div>
+        <div class="price" *ngIf="!isSale(selectedProduct)">{{selectedProduct.price}} &euro;</div>
+        <div class="price" *ngIf="isSale(selectedProduct)">{{selectedProduct.priceSale}} &euro;</div>
         <div class="number">
             <button mat-raised-button class="minus" (click)="countMinus()">-</button>
             <mat-form-field>

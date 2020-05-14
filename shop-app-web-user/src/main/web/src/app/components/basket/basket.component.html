@@ -3,7 +3,7 @@
         <p>Корзина</p>
     </div>
 
-    <div *ngIf="isMobile()">
+    <div class="mobile">
         <div *ngFor="let basketRow of basket.basketRows.basketRowList">
             <div class="mobile-product-box">
                 <div class="td"><img class="row-image" mat-card-image src="{{basketRow.product.photo}}" alt="Фото"></div>
@@ -16,8 +16,10 @@
                     </mat-form-field>
                     <button mat-raised-button class="plus" (click)="countPlus(basketRow, basketRow.count)">+</button>
                 </div></div>
-                <div class="price">Цена (шт): {{basketRow.product.price}} &euro;</div>
-                <div class="price">Цена всего: {{basketRow.product.price*basketRow.count}} &euro;</div>
+                <div *ngIf="!isSale(basketRow.product)" class="price">Цена (шт): {{basketRow.product.price}} &euro;</div>
+                <div *ngIf="isSale(basketRow.product)" class="price">Цена (шт): {{basketRow.product.priceSale}} &euro;</div>
+                <div  *ngIf="!isSale(basketRow.product)" class="price">Цена всего: {{basketRow.product.price*basketRow.count}} &euro;</div>
+                <div  *ngIf="isSale(basketRow.product)" class="price">Цена всего: {{basketRow.product.priceSale*basketRow.count}} &euro;</div>
 
                 <div class="td"><button mat-button (click)="countZero(basketRow)">❌</button></div>
             </div>
@@ -35,7 +37,7 @@
         </div>
     </div>
 
-    <table matSort class="table" *ngIf="!isMobile()">
+    <table matSort class="table desktop">
         <tr>
             <th mat-sort-header="image"></th>
             <th mat-sort-header="name">Наименование</th>
@@ -55,8 +57,11 @@
                 </mat-form-field>
                 <button mat-raised-button class="plus" (click)="countPlus(basketRow, basketRow.count)">+</button>
             </div></td>
-            <td class="price">{{basketRow.product.price}} &euro;</td>
-            <td class="price">{{basketRow.product.price*basketRow.count}} &euro;</td>
+            <td *ngIf="!isSale(basketRow.product)"  class="price">{{basketRow.product.price}} &euro;</td>
+            <td *ngIf="isSale(basketRow.product)"  class="price">{{basketRow.product.priceSale}} &euro;</td>
+            <td *ngIf="!isSale(basketRow.product)" class="price">{{basketRow.product.price*basketRow.count}} &euro;</td>
+            <td *ngIf="isSale(basketRow.product)" class="price">{{basketRow.product.priceSale*basketRow.count}} &euro;</td>
+
 
             <td class="td"><button mat-button (click)="countZero(basketRow)">❌</button></td>
         </tr>

@@ -31,9 +31,6 @@
 
 }
 
-@media screen and (min-width: 481px) {
-    .home {
-        display: flex;
-        min-height: calc(100vh - 64px);
-    }
+@media screen and (max-device-width: 481px) {
+
 }

@@ -69,3 +69,21 @@
 .td {
     vertical-align: middle;
 }
+
+.desktop {
+
+}
+
+.mobile {
+    display: none;
+}
+
+@media screen and (max-device-width: 920px) {
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
+}

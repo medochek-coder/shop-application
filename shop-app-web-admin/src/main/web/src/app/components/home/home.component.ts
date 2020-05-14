@@ -3,6 +3,7 @@ import {Product} from "../../models/product";
 import {ProductService} from "../../services/product.service";
 import {Router} from "@angular/router";
 import {ProductList} from "../../models/productList";
+import {ProductOrder} from "../../models/productOrder";
 
 @Component({
     selector: 'home',
@@ -40,5 +41,9 @@ export class HomeComponent implements OnInit {
             this.router.navigate(['home']);
             this.initProducts();
         });
+    }
+
+    isSale( product: Product) {
+        return product.priceSale !== null;
     }
 }

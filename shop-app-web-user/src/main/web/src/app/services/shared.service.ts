@@ -53,7 +53,12 @@ export class SharedService {
     public getCurrentBasketTotalPrice() {
         let basketTotalPrice = 0;
         this.basket.basketRows.basketRowList.forEach(br => {
-            basketTotalPrice += br.count * br.product.price;
+            if(br.product.priceSale === null) {
+                basketTotalPrice += br.count * br.product.price;
+            }
+            else {
+                basketTotalPrice += br.count * br.product.priceSale;
+            }
         });
         return basketTotalPrice;
     }

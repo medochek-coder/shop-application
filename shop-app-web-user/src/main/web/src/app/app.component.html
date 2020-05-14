@@ -4,7 +4,8 @@
         <span class="app-title">Магазин "Медошкины пышки"</span>
     </div>
     <div class="panel-right" (click)="gotoBasketPage()">
-        <p class="basket-info">Всего товаров: {{getProductCount()}}, на сумму {{getTotalPrice()}} &euro;</p>
+        <p class="basket-info desktop">Всего товаров: {{getProductCount()}}, на сумму {{getTotalPrice()}} &euro;</p>
+        <p class="basket-info mobile">Кол-во: {{getProductCount()}}, сумма {{getTotalPrice()}} &euro;</p>
         <img class="basket" src="../assets/image/basket.png" alt="Basket">
     </div>
 </mat-toolbar>
