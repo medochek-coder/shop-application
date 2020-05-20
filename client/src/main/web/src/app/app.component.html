@@ -18,7 +18,7 @@
         <img class="logo" src="../assets/image/logo.png" alt="Logo">
         <span class="app-title">Магазин "Медошкины пышки"</span>
     </div>
-    <div class="panel-right" (click)="gotoBasketPage()">
+    <div class="panel-right" (click)="gotoBasketPage()" *ngIf="!isAdmin()">
         <p class="basket-info desktop">Всего товаров: {{getProductCount()}}, на сумму {{getTotalPrice()}} &euro;</p>
         <p class="basket-info mobile">Кол-во: {{getProductCount()}}, сумма {{getTotalPrice()}} &euro;</p>
         <img class="basket" src="../assets/image/basket.png" alt="Basket">

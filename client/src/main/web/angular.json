@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "np-app"
+  "defaultProject": "np-app",
+  "cli": {
+    "analytics": "98903c22-778e-48d4-aa36-9b948747ee4d"
+  }
 }

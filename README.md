@@ -1,6 +1,6 @@
 # Shop application
 ## About
-This is web service of shop on Spring Boot and Angular 6 with Material UI, Webpack, and ES6.
+This is web service of shop on Spring Boot and Angular 9 with Material UI, Webpack, and ES6.
 ## Run
 - Build:
 Go to root directory and run command
