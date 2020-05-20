@@ -14,7 +14,7 @@ export class SharedService {
     private HOST_DEV = 'http://localhost';
     private PORT_DEV = '8080';
 
-    private HOST_PROD = 'https://web-shop-user.herokuapp.com';
+    private HOST_PROD = 'http://23.111.204.125:8080';
 
     private basket: Basket = new Basket({});
     private readonly SERVER_URL: string;
