@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.medochek.shopapp</groupId>
     <artifactId>shop-app-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -13,9 +13,8 @@
         <relativePath/>
     </parent>
     <modules>
-        <module>shop-app-web-admin</module>
-        <module>shop-app-web-user</module>
-        <module>shop-app-server</module>
+        <module>client</module>
+        <module>server</module>
     </modules>
 
     <dependencies>

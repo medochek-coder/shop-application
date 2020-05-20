@@ -1,0 +1,44 @@
+﻿<mat-toolbar class="panel" color="primary">
+    <div class="panel-left admin" (click)="gotoAHomePage()" *ngIf="isAdmin()">
+        <div class="left">
+            <img class="logo" src="../assets/image/logo.png" alt="Logo">
+            <span class="app-title">Панель администратора</span>
+        </div>
+        <div class="right mobile">
+            <button mat-button [matMenuTriggerFor]="menu">Меню</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/admin-home">Список товаров</button>
+                <button mat-menu-item (click)="gotoNewProductPage()">Добавить товар</button>
+                <button mat-menu-item routerLink="/admin-orders">Список заказов</button>
+                <button mat-menu-item routerLink="/admin-history">История заказов</button>
+            </mat-menu>
+        </div>
+    </div>
+    <div class="panel-left home" (click)="gotoHomePage()" *ngIf="!isAdmin()">
+        <img class="logo" src="../assets/image/logo.png" alt="Logo">
+        <span class="app-title">Магазин "Медошкины пышки"</span>
+    </div>
+    <div class="panel-right" (click)="gotoBasketPage()">
+        <p class="basket-info desktop">Всего товаров: {{getProductCount()}}, на сумму {{getTotalPrice()}} &euro;</p>
+        <p class="basket-info mobile">Кол-во: {{getProductCount()}}, сумма {{getTotalPrice()}} &euro;</p>
+        <img class="basket" src="../assets/image/basket.png" alt="Basket">
+    </div>
+</mat-toolbar>
+<div class="home">
+    <div class="home__card desktop" *ngIf="isAdmin()">
+        <mat-nav-list class="menu">
+            <div>
+                <a mat-list-item routerLink="/admin-home">Список товаров</a>
+                <a mat-list-item (click)="gotoNewProductPage()">Добавить товар</a>
+                <a mat-list-item routerLink="/admin-orders">Список заказов</a>
+                <a mat-list-item routerLink="/admin-history">История заказов</a>
+            </div>
+        </mat-nav-list>
+    </div>
+    <div class="home__content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+
+

@@ -8,30 +8,20 @@ Go to root directory and run command
 mvn clean install
 ```
 - Run Server:
-Go to shop-app-server directory and run command
+Go to server directory and run command
 ```bash
 mvn spring-boot:run
 ```
-- Run Clients:
-Go to shop-web-app-user/src/man/web directory and run command
+- Run Client:
+Go to client/src/man/web directory and run command
 ```bash
 npm install
 npm start
 ```
-Go to shop-web-app-admin/src/man/web directory and run command
-```bash
-npm install
-npm start
-```
-- Run User App:
+- Run App:
 - Open you browser an go to
 ```bash
 http://localhost:4201
-``` 
-- Run Admin App:
-- Open you browser an go to
-```bash
-http://localhost:4200
 ``` 
 ## Release
 You can see deployed release version on

@@ -1,0 +1,79 @@
+.logo {
+    height: 50px;
+    width: 50px;
+    padding-right: 0px;
+}
+
+.basket {
+    height: 50px;
+    width: 50px;
+    margin-right: 0px;
+}
+
+.basket-info {
+
+}
+
+.app-title {
+
+}
+
+.panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-right {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.panel-left {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.desktop {
+
+}
+
+.home {
+    display: flex;
+    min-height: calc(100vh - 64px);
+}
+
+.home__card {
+    border-right: solid 1px rgba(0,0,0,.12);
+    width: 15%;
+}
+
+.home__content {
+    min-height: 100%;
+    width: 100%;
+}
+
+.mobile {
+    display: none;
+}
+
+@media screen and (max-device-width: 481px) {
+    .app-title {
+        display: none;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
+
+    .basket-info {
+        padding-right: 5px;
+        margin: 0px 0px 0px 0px;
+    }
+}
