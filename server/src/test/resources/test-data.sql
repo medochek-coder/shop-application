@@ -75,3 +75,13 @@ values (52);
 
 insert into basket_row (id, count, product_id, basket_id)
 values (89, 3, 1, 52);
+
+insert into product_order (id, basket_id, owner_first_name,
+owner_last_name, owner_phone, owner_email, status, date, price_list)
+values (11, 51, 'anna', 'petrova', '1234567', 'anna@petr.com',
+'IN_PROGRESS', current_date, '2-3.0;1-2.0');
+
+insert into product_order (id, basket_id, owner_first_name,
+owner_last_name, owner_phone, owner_email, status, date, price_list)
+values (12, 50, 'anna1', 'petrova1', '+1234567', 'anna1@petr.com',
+'COMPLETE', current_date, '2-3.0;1-2.0');

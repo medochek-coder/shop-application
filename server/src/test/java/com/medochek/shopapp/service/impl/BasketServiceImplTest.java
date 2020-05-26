@@ -38,7 +38,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should get all baskets by id")
+    @DisplayName("get all baskets")
     public void getAll() {
         List<Basket> basketList = basketService.getAll();
 
@@ -47,7 +47,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should delete by id")
+    @DisplayName("delete by id")
     public void shouldDeleteById() {
         basketService.deleteById(1L);
 
@@ -55,7 +55,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should create basket row and add 1 product by basket and product ids")
+    @DisplayName("create basket row and add 1 product by basket and product ids")
     public void add1ProductById() {
         Product p2 = Product.builder()
                 .id(2L)
@@ -77,7 +77,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should set 1 product by basket and product ids")
+    @DisplayName("set 1 product by basket and product ids")
     public void addProductById() {
         Product p2 = Product.builder()
                 .id(2L)
@@ -100,7 +100,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should set count product by basket and product ids")
+    @DisplayName("set count product by basket and product ids")
     public void changeCountProductById() {
         Product p2 = Product.builder()
                 .id(2L)
@@ -124,7 +124,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should create basket row with need count product")
+    @DisplayName("create basket row with need count product")
     public void addCountProductById() {
         Product p2 = Product.builder()
                 .id(2L)
@@ -147,7 +147,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should delete basket row with product")
+    @DisplayName("delete basket row with product")
     public void deleteBasketRowIfCountProductNegative() {
         Integer integer = basketService.changeCountProductById(45L, 2L, -3);
 
@@ -159,7 +159,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should append need count product by basket and product ids")
+    @DisplayName("append need count product by basket and product ids")
     public void appendProductById() {
         Product p2 = Product.builder()
                 .id(2L)
@@ -182,7 +182,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should create basket row with need count product")
+    @DisplayName("create basket row with need count product")
     public void addCountProductById2() {
         Product p2 = Product.builder()
                 .id(2L)
@@ -204,7 +204,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should +1 count product")
+    @DisplayName("+1 count product")
     public void incCountProductById() {
         Product p2 = Product.builder()
                 .id(2L)
@@ -228,7 +228,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should -1 count product")
+    @DisplayName("-1 count product")
     public void decCountProductById() {
         Product p2 = Product.builder()
                 .id(2L)
@@ -252,7 +252,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should delete product from basket")
+    @DisplayName("delete product from basket")
     public void deleteProductById() {
         Product p1 = Product.builder()
                 .id(1L)
@@ -276,7 +276,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should delete all product from basket")
+    @DisplayName("delete all product from basket")
     public void clearById() {
         basketService.clearById(51L);
 
@@ -288,7 +288,7 @@ class BasketServiceImplTest {
     }
 
     @Test
-    @DisplayName("should get basket by id")
+    @DisplayName("get basket by id")
     public void getById() {
         Product p1 = Product.builder()
                 .id(1L)
