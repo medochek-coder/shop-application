@@ -1,5 +1,6 @@
 import {Component, Inject, OnDestroy} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'action.popup',
@@ -14,6 +15,7 @@ export class ActionPopup {
 
     constructor(
         public dialogRef: MatDialogRef<ActionPopup>,
+        private router: Router,
         @Inject(MAT_DIALOG_DATA) public data: any) {
         this.title = data.title;
         this.info = data.info;
@@ -22,5 +24,9 @@ export class ActionPopup {
 
     private closePopup() {
         this.dialogRef.close();
+    }
+
+    public isAdmin() {
+        return this.router.url.includes('/admin');
     }
 }

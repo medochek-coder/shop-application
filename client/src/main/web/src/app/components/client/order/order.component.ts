@@ -61,6 +61,7 @@ export class OrderComponent implements OnInit {
     public openActionPopup() {
         const dialogRef = this.dialog.open(ActionPopup, {data : {title: 'Готово', info: 'Номер вашего заказа: ' + this.order.id}});
         dialogRef.afterClosed().subscribe(result => {
+            this.shared.updateCurrentBasket();
             this.router.navigate(['home']);
         });
     }

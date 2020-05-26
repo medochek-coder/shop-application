@@ -14,6 +14,7 @@ export class AppComponent {
 
     constructor(private router: Router,
                 private shared: SharedService) {
+        this.shared.updateCurrentBasket();
     }
 
     public gotoBasketPage() {

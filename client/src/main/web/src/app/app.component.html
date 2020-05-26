@@ -1,6 +1,6 @@
 ﻿<mat-toolbar class="panel" color="primary">
-    <div class="panel-left admin" (click)="gotoAHomePage()" *ngIf="isAdmin()">
-        <div class="left">
+    <div class="panel-left admin" *ngIf="isAdmin()">
+        <div class="left" (click)="gotoAHomePage()">
             <img class="logo" src="../assets/image/logo.png" alt="Logo">
             <span class="app-title">Панель администратора</span>
         </div>
