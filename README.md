@@ -26,8 +26,8 @@ http://localhost:4201
 ## Release
 You can see deployed release version on
 ```bash
-https://web-shop-user.herokuapp.com
-https://web-shop-admintool.herokuapp.com
+http://23.111.204.125:8080/#/home
+http://23.111.204.125:8080/#/admin-home
 ``` 
 
 
